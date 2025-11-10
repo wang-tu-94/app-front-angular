@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  height: 100%;
+  overflow: auto;
+}
+
+.product-image {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background-color: #fafafa;
+  transition: transform 0.2s;
+}

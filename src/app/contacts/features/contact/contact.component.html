@@ -1,0 +1,24 @@
+<p-card header="Contact" class="block m-2 text-center">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+        <div class="p-field" [class.invalid]="isInvalid(email)" [class.valid]="isValid(email)">
+            <label for="email">Email</label>
+            <input id="email" pInputText formControlName="email" type="email" placeholder="Votre email" />
+            @if (isInvalid(email)) {
+                <small class="p-error">Veuillez saisir un email valide.</small>
+            }
+        </div>
+
+        <div class="p-field" [class.invalid]="isInvalid(message)" [class.valid]="isValid(message)">
+            <label for="message">Message</label>
+            <textarea id="message" pInputTextarea formControlName="message" rows="5" maxlength="300"
+                      placeholder="Votre message (max 300 caractères)"></textarea>
+            @if (isInvalid(message)) {
+                <small class="p-error">Le message est obligatoire.</small>
+            }
+            <small class="char-count">{{ message.value?.length || 0 }}/300</small>
+        </div>
+
+        <p-button type="submit" label="Envoyer"></p-button>
+    </form>
+</p-card>
+<p-toast #toast position="bottom-right" key="br" ></p-toast>

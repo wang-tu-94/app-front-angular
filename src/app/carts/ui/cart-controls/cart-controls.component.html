@@ -1,0 +1,20 @@
+<div class="cart-controls">
+    @if (cartItem) {
+        <p-inputNumber
+                [(ngModel)]="cartItem.quantity"
+                [showButtons]="true"
+                [inputStyle]="{ width: '3rem' }"
+                buttonLayout="horizontal"
+                inputId="horizontal"
+                [step]="1"
+                (ngModelChange)="updateQuantity($event)"
+                decrementButtonClass="p-button-contrast"
+                incrementButtonClass="p-button-contrast"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"/>
+        <p-button class="p-button-danger p-button-sm" severity="danger" label="Supprimer du panier" (click)="remove()"></p-button>
+    }
+    @else {
+        <p-button icon="pi pi-shopping-cart" class="flex-auto md:flex-initial white-space-nowrap" label="Ajouter au panier" (click)="add()" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'" />
+    }
+</div>

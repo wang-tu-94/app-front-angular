@@ -1,0 +1,41 @@
+<h1 class="text-center">Liste du panier</h1>
+
+<p-dataView #dv [value]="cartItems()">
+    <ng-template pTemplate="list" let-cartItems>
+        <div class="grid grid-nogutter">
+            @for (cartItem of cartItems; track cartItem; let first = $first) {
+                <div class="col-12 relative">
+                    <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3"
+                         [ngClass]="{ 'border-top-1 surface-border': !first }">
+                        <div class="md:w-10rem relative">
+                            <img class="block xl:block mx-auto border-round w-full"
+                                 [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + cartItem.product.image"
+                                 [alt]="cartItem.product.name"/>
+                        </div>
+                        <div class="flex flex-column md:flex-row justify-content-between md:align-items-center flex-1 gap-4">
+                            <div class="flex flex-row md:flex-column justify-content-between align-items-start gap-2">
+                                <div>
+                                    <span class="font-medium text-secondary text-sm">{{ cartItem.product.category }}</span>
+                                    <div class="text-lg font-medium text-900 mt-2">{{ cartItem.product.name }}</div>
+                                </div>
+                                <div class="surface-100 p-1" style="border-radius: 30px">
+                                    <div class="surface-0 flex align-items-center gap-2 justify-content-center py-1 px-2"
+                                         style="border-radius: 30px; box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.04), 0px 1px 2px 0px rgba(0, 0, 0, 0.06)">
+                                        <span class="text-900 font-medium text-sm">{{ cartItem.product.rating }}</span>
+                                        <i class="pi pi-star-fill text-yellow-500"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-column md:align-items-end gap-5">
+                                <span class="text-xl font-semibold text-900 mr-3">{{ cartItem.product.price | currency:'EUR':'symbol':'1.2-2':'fr-FR' }}</span>
+                                <div class="flex flex-row-reverse md:flex-row gap-2">
+                                    <app-cart-controls [product]="cartItem.product"></app-cart-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </ng-template>
+</p-dataView>

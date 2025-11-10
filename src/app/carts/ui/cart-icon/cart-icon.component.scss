@@ -1,0 +1,22 @@
+.cart-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.pi-shopping-cart {
+  font-size: 1.5rem;
+}
+.count {
+  font-weight: bold;
+  background-color: #f59e0b;
+  color: white;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
