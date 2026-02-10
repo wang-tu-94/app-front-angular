@@ -1,0 +1,14 @@
+services:
+  angular-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: product-frontend
+    ports:
+      - "4200:4200"
+    volumes:
+      - .:/app                # Synchronise ton code local avec le conteneur
+      - /app/node_modules     # Protège les modules du conteneur (évite les conflits Windows/Linux)
+    environment:
+      - CHOKIDAR_USEPOLLING=true # Force la détection de fichiers sur Docker Desktop
+    restart: unless-stopped

@@ -3,6 +3,7 @@ import {Product, ProductFilter} from "./product.model";
 import { HttpClient } from "@angular/common/http";
 import { Observable, tap } from "rxjs";
 import {environment} from "../../../environments/environment";
+import {Page} from "../../core/model/page.model";
 
 @Injectable({
     providedIn: "root"
@@ -27,9 +28,9 @@ import {environment} from "../../../environments/environment";
         );
     });
 
-    public get(): Observable<Product[]> {
-        return this.http.get<Product[]>(`${this.API_URL}${this.path}`).pipe(
-          tap(products => { this._products.set(products); }),
+    public get(): Observable<Page<Product>> {
+        return this.http.get<Page<Product>>(`${this.API_URL}${this.path}`).pipe(
+          tap(products => { this._products.set(products.content); }),
         );
     }
 

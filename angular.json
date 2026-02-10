@@ -58,19 +58,11 @@
             "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
-            "mock": {
+            "dev": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.mock.ts"
-                }
-              ]
-            },
-            "integ": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.integ.ts"
+                  "with": "src/environments/environment.dev.ts"
                 }
               ]
             },
@@ -104,11 +96,8 @@
             "buildTarget": "product-front-shop:build"
           },
           "configurations": {
-            "mock": {
-              "buildTarget": "product-front-shop:build:mock"
-            },
-            "integ": {
-              "buildTarget": "product-front-shop:build:integ"
+            "dev": {
+              "buildTarget": "product-front-shop:build:dev"
             },
             "production": {
               "buildTarget": "product-front-shop:build:production"

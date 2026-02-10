@@ -4,9 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "mock:server": "npx json-server@0.17.4 --watch ./src/assets/db.json --routes routes.json --port 3000 --host 0.0.0.0",
-    "start:mock": "concurrently -n \"JSON,NG\" -c \"bgBlue,bgGreen\" \"npm run mock:server\" \"ng serve --configuration mock\""
+    "build": "ng build"
   },
   "private": true,
   "dependencies": {
@@ -43,7 +41,6 @@
     "@biomejs/biome": "1.7.2",
     "@types/chart.js": "2.9.30",
     "@types/node": "20.12.12",
-    "concurrently": "^9.2.1",
     "ts-node": "7.0.0"
   }
 }
