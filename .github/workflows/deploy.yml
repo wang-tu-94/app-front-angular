@@ -2,7 +2,7 @@ name: Deploy product-frontend
 
 on:
   push:
-    branches: [ master ] # Se déclenche quand tu pushes sur master
+    branches: [ master ]
 
 jobs:
   build-and-push:
