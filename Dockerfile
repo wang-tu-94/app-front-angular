@@ -15,7 +15,7 @@ FROM nginx:alpine
 
 # On copie les fichiers compilés depuis l'étape de build
 # Note : Angular 18 build par défaut dans dist/[nom-du-projet]/browser
-COPY --from=build /app/dist/*/browser /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html
 
 # On copie une configuration Nginx personnalisée pour gérer le routage Angular
 COPY nginx.conf /etc/nginx/conf.d/default.conf

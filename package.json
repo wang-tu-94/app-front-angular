@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "build": "ng build",
     "mock:server": "npx json-server@0.17.4 --watch ./src/assets/db.json --routes routes.json --port 3000 --host 0.0.0.0",
     "start:mock": "concurrently -n \"JSON,NG\" -c \"bgBlue,bgGreen\" \"npm run mock:server\" \"ng serve --configuration mock\""
   },
