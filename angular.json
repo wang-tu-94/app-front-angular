@@ -66,6 +66,14 @@
                 }
               ]
             },
+            "integ": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.integ.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [],
               "optimization": true,
@@ -98,6 +106,9 @@
           "configurations": {
             "mock": {
               "buildTarget": "product-front-shop:build:mock"
+            },
+            "integ": {
+              "buildTarget": "product-front-shop:build:integ"
             },
             "production": {
               "buildTarget": "product-front-shop:build:production"

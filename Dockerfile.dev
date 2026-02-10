@@ -1,0 +1,24 @@
+# 1. Utilisation d'une image Node légère
+FROM node:20-alpine
+
+# 2. Définition du répertoire de travail
+WORKDIR /app
+
+# 3. Installation de l'Angular CLI globalement
+RUN npm install -g @angular/cli
+
+# 4. Copie des fichiers de dépendances pour profiter du cache Docker
+COPY package*.json ./
+
+# 5. Installation des dépendances
+RUN npm install
+
+# 6. Copie du reste du code source
+COPY . .
+
+# 7. Exposition du port par défaut d'Angular
+EXPOSE 4200
+
+# 8. Commande pour lancer Angular sur toutes les interfaces réseau
+# Le flag --poll permet de détecter les changements de fichiers sur certains OS (Windows/macOS)
+CMD ["ng", "serve", "--host", "0.0.0.0", "--poll", "2000"]
