@@ -15,5 +15,5 @@ import {CartIconComponent} from "./carts/ui/cart-icon/cart-icon.component";
   imports: [RouterModule, SplitterModule, ToolbarModule, PanelMenuComponent, CartIconComponent],
 })
 export class AppComponent {
-  title = "ALTEN SHOP";
+  title = "Demo SHOP";
 }

@@ -1,6 +1,6 @@
 {
-  "name": "altensdc",
-  "short_name": "altensdc",
+  "name": "product-front-sdc",
+  "short_name": "product-front-sdc",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

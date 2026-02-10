@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "altenshop": {
+    "product-front-shop": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -93,14 +93,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "altenshop:build"
+            "buildTarget": "product-front-shop:build"
           },
           "configurations": {
             "mock": {
-              "buildTarget": "altenshop:build:mock"
+              "buildTarget": "product-front-shop:build:mock"
             },
             "production": {
-              "buildTarget": "altenshop:build:production"
+              "buildTarget": "product-front-shop:build:production"
             }
           },
           "defaultConfiguration": ""
@@ -108,7 +108,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "altenshop:build"
+            "buildTarget": "product-front-shop:build"
           }
         },
         "lint": {
