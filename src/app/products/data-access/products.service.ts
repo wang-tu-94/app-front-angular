@@ -1,64 +1,72 @@
 import {Injectable, inject, signal, computed} from "@angular/core";
 import {Product, ProductFilter} from "./product.model";
-import { HttpClient } from "@angular/common/http";
-import { Observable, tap } from "rxjs";
+import {HttpClient, HttpParams} from "@angular/common/http";
+import {Observable, switchMap, tap} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {Page} from "../../core/model/page.model";
 
 @Injectable({
-    providedIn: "root"
-}) export class ProductsService {
+  providedIn: "root"
+})
+export class ProductsService {
 
-    private readonly http = inject(HttpClient);
-    private readonly path = "/api/v1/products";
-    private readonly API_URL = environment.apiUrl;
+  private readonly http = inject(HttpClient);
+  private readonly path = "/api/v1/products";
+  private readonly API_URL = environment.apiUrl;
 
-    private readonly _products = signal<Product[]>([]);
+  private readonly _products = signal<Page<Product> | undefined>(undefined);
+  public readonly products = this._products.asReadonly();
 
-    public readonly products = this._products.asReadonly();
+  private readonly _filter = signal<ProductFilter>({page: 0});
 
-    private _filter = signal<ProductFilter>({});
-    public readonly filter = this._filter.asReadonly();
+  public get(): Observable<Page<Product>> {
+    const currentFilter = this._filter();
 
-    public readonly filteredProducts = computed(() => {
-        const f = this._filter();
-        return this._products().filter(p =>
-          (!f.name || p.name.toLowerCase().includes(f.name.toLowerCase())) &&
-          (!f.category || p.category === f.category)
-        );
-    });
+    let params = new HttpParams()
+      .set('page', (currentFilter.page || 0).toString())
+      .set('size', '10');
 
-    public get(): Observable<Page<Product>> {
-        return this.http.get<Page<Product>>(`${this.API_URL}${this.path}`).pipe(
-          tap(products => { this._products.set(products.content); }),
-        );
+    if (currentFilter.category) {
+      params = params.set('category', currentFilter.category);
     }
 
-    public create(product: Product): Observable<boolean> {
-        return this.http.post<boolean>(`${this.API_URL}${this.path}`, product).pipe(
-            tap(() => this._products.update(products => [product, ...products])),
-        );
-    }
+    return this.http.get<Page<Product>>(`${this.API_URL}${this.path}`, { params }).pipe(
+      tap(res => this._products.set(res))
+    );
 
-    public update(product: Product): Observable<boolean> {
-        return this.http.put<boolean>(`${this.API_URL}${this.path}/${product.id}`, product).pipe(
-            tap(() => this._products.update(products => {
-                return products.map(p => p.id === product.id ? product : p)
-            })),
-        );
-    }
+  }
 
-    public delete(productId: number): Observable<boolean> {
-        return this.http.delete<boolean>(`${this.API_URL}${this.path}/${productId}`).pipe(
-            tap(() => this._products.update(products => products.filter(product => product.id !== productId))),
-        );
-    }
+  public create(product: Product) {
+    return this.http.post<Product>(`${this.API_URL}${this.path}`, product).pipe(
+      switchMap(() => this.get()) // On enchaîne proprement sans .subscribe()
+    );
+  }
 
-    setFilter(filter: ProductFilter) {
-        this._filter.set({ ...filter });
-    }
+  /**
+   * Mise à jour : PUT puis rafraîchissement
+   */
+  public update(product: Product): Observable<Page<Product>> {
+    return this.http.put<Product>(`${this.API_URL}${this.path}/${product.id}`, product).pipe(
+      switchMap(() => this.get())
+    );
+  }
 
-    resetFilter() {
-        this._filter.set({});
-    }
+  /**
+   * Suppression : DELETE puis rafraîchissement
+   */
+  public delete(productId: number): Observable<Page<Product>> {
+    return this.http.delete<void>(`${this.API_URL}${this.path}/${productId}`).pipe(
+      switchMap(() => this.get())
+    );
+  }
+
+  setFilter(filter: ProductFilter) {
+    this._filter.set({ ...filter });
+    this.get().subscribe();
+  }
+
+  resetFilter() {
+    this._filter.set({ page: 0 });
+    this.get().subscribe();
+  }
 }

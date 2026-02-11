@@ -4,10 +4,9 @@ import { ProductsService } from "app/products/data-access/products.service";
 import { ProductFormComponent } from "app/products/ui/product-form/product-form.component";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
-import { DataViewModule } from 'primeng/dataview';
+import {DataViewModule, DataViewPageEvent} from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
 import { CommonModule } from '@angular/common';
-import {CartsService} from "../../../carts/data-access/carts.service";
 import {CartControlsComponent} from "../../../carts/ui/cart-controls/cart-controls.component";
 import {RatingModule} from "primeng/rating";
 import {FormsModule} from "@angular/forms";
@@ -46,7 +45,7 @@ const emptyProduct: Product = {
 export class ProductListComponent implements OnInit {
   private readonly productsService = inject(ProductsService);
 
-  public readonly products = this.productsService.filteredProducts;
+  public readonly products = this.productsService.products;
 
   public isDialogVisible = false;
   public isCreation = false;
@@ -124,4 +123,9 @@ export class ProductListComponent implements OnInit {
     this.isDialogVisible = false;
   }
 
+  protected onPageChange($event: DataViewPageEvent) {
+    this.filter.page = $event.first / $event.rows;
+
+    this.search();
+  }
 }

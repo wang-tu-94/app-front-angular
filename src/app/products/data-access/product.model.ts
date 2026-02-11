@@ -18,8 +18,8 @@ export interface Product {
 }
 
 export interface ProductFilter {
-    name?: string;
     category?: string;
+    page?: number;
 }
 
 export const categories: SelectItem[] = [
