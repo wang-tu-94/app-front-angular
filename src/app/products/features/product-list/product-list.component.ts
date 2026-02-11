@@ -17,6 +17,7 @@ import {MenuModule} from "primeng/menu";
 import {MenuItem} from "primeng/api";
 import {SplitButtonModule} from "primeng/splitbutton";
 import {ToolbarModule} from "primeng/toolbar";
+import {CartsService} from "../../../carts/data-access/carts.service";
 
 const emptyProduct: Product = {
   code: "",
@@ -39,6 +40,7 @@ const emptyProduct: Product = {
 })
 export class ProductListComponent implements OnInit {
   private readonly productsService = inject(ProductsService);
+  private readonly cartsService = inject(CartsService);
 
   public readonly products = this.productsService.products;
 
@@ -50,6 +52,7 @@ export class ProductListComponent implements OnInit {
   filter: ProductFilter = {};
 
   ngOnInit() {
+    this.cartsService.get();
     this.productsService.get().subscribe();
   }
 

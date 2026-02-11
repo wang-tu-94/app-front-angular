@@ -15,6 +15,6 @@
         <p-button class="p-button-danger p-button-sm" severity="danger" label="Supprimer du panier" (click)="remove()"></p-button>
     }
     @else {
-        <p-button icon="pi pi-shopping-cart" class="flex-auto md:flex-initial white-space-nowrap" label="Ajouter au panier" (click)="add()" [disabled]="product.inventoryStatus === 'OUTOFSTOCK'" />
+        <p-button icon="pi pi-shopping-cart" class="flex-auto md:flex-initial white-space-nowrap" label="Ajouter au panier" (click)="add()" [disabled]="product().inventoryStatus === 'OUTOFSTOCK'" />
     }
 </div>

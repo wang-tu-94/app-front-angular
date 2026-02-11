@@ -1,4 +1,4 @@
-import {Component, inject} from "@angular/core";
+import {Component, inject, OnInit} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {InputNumberModule} from "primeng/inputnumber";
 import {FormsModule} from "@angular/forms";
@@ -8,6 +8,7 @@ import {CartControlsComponent} from "../../ui/cart-controls/cart-controls.compon
 import {CartsService} from "../../data-access/carts.service";
 import {Button} from "primeng/button";
 import {TagModule} from "primeng/tag";
+import {Cart} from "../../data-access/cart.model";
 
 @Component({
   selector: 'app-cart',
@@ -16,8 +17,14 @@ import {TagModule} from "primeng/tag";
   templateUrl: "./cart.component.html",
   styleUrls: ["./cart.component.scss"],
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   private readonly cartsService = inject(CartsService);
 
-  public readonly cartItems = this.cartsService.items;
+  public readonly cart = this.cartsService.cart;
+
+  ngOnInit(): void {
+    //this.cartsService.get()
+  }
+
+
 }

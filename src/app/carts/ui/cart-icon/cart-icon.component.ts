@@ -1,4 +1,4 @@
-import {Component, inject} from "@angular/core";
+import {Component, inject, OnInit} from "@angular/core";
 import {CartsService} from "../../data-access/carts.service";
 import {RouterLink} from "@angular/router";
 
@@ -13,4 +13,5 @@ import {RouterLink} from "@angular/router";
 })
 export class CartIconComponent {
     public readonly cartService = inject(CartsService);
+    public readonly cart = this.cartService.cart;
 }

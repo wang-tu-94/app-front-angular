@@ -1,10 +1,17 @@
 import {Product} from "../../products/data-access/product.model";
 
 export interface Cart {
-    items: CartItem[];
+  id?: number;
+  items: CartItem[];
+  total?: number;
 }
 
 export interface CartItem {
-    product: Product;
-    quantity: number;
+  id?: number;
+  productId?: number;
+  productName?: string;
+  unitPrice?: number;
+  quantity: number;
+  product?: Product;
+  total?: number;
 }

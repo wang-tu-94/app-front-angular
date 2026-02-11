@@ -1,4 +1,4 @@
-import {Component, inject, Input} from "@angular/core";
+import {Component, inject, input, Input, InputSignal, OnInit} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {Product} from "../../../products/data-access/product.model";
 import {CartsService} from "../../data-access/carts.service";
@@ -13,29 +13,32 @@ import {FormsModule} from "@angular/forms";
   templateUrl: "./cart-controls.component.html",
   styleUrls: ["./cart-controls.component.scss"],
 })
-export class CartControlsComponent {
-  @Input() product!: Product;
+export class CartControlsComponent implements OnInit {
+  product = input<Product>({})
 
   private readonly cartService = inject(CartsService);
+  public readonly cart = this.cartService.cart;
+
+  ngOnInit(): void {
+  }
 
   get cartItem() {
-    return this.cartService.items().find(item => item.product.id === this.product.id);
+    return this.cart().items.find(item => item?.product?.id === this.product().id);
   }
 
   add() {
-    this.cartService.add(this.product);
+    this.cartService.add(this.product()).subscribe();
   }
 
   remove() {
-    if (this.cartItem) {
-      this.cartService.remove(this.cartItem.product);
-    }
+    console.log(`cartId : ${this.cartItem?.id}`)
+    this.cartService.remove(this.cartItem?.id, this.product()).subscribe();
   }
 
   updateQuantity(quantity: number) {
     if (!this.cartItem) return;
     if (quantity > 0) {
-      this.cartService.updateQuantity(this.cartItem.product, quantity);
+      this.cartService.updateQuantity(this.product(), quantity);
     } else {
       this.remove();
     }
