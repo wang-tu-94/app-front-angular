@@ -19,7 +19,6 @@ import {SplitButtonModule} from "primeng/splitbutton";
 import {ToolbarModule} from "primeng/toolbar";
 
 const emptyProduct: Product = {
-  id: 0,
   code: "",
   name: "",
   description: "",
@@ -28,11 +27,7 @@ const emptyProduct: Product = {
   price: 0,
   quantity: 0,
   internalReference: "",
-  shellId: 0,
   inventoryStatus: "INSTOCK",
-  rating: 0,
-  createdAt: 0,
-  updatedAt: 0,
 };
 
 @Component({
@@ -103,7 +98,7 @@ export class ProductListComponent implements OnInit {
   }
 
   public onDelete(product: Product) {
-    this.productsService.delete(product.id).subscribe();
+    this.productsService.delete(product.id!).subscribe();
   }
 
   public onSave(product: Product) {

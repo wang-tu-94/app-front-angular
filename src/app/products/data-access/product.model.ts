@@ -1,20 +1,20 @@
 import {SelectItem} from "primeng/api";
 
 export interface Product {
-    id: number;
-    code: string;
-    name: string;
-    description: string;
-    image: string;
+    id?: number;
+    code?: string;
+    name?: string;
+    description?: string;
+    image?: string;
     category: string;
-    price: number;
+    price?: number;
     quantity: number;
-    internalReference: string;
-    shellId: number;
+    internalReference?: string;
+    shellId?: number;
     inventoryStatus: "INSTOCK" | "LOWSTOCK" | "OUTOFSTOCK";
-    rating: number;
-    createdAt: number;
-    updatedAt: number;
+    rating?: number;
+    createdAt?: number;
+    updatedAt?: number;
 }
 
 export interface ProductFilter {

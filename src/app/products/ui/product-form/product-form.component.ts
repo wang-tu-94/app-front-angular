@@ -20,6 +20,16 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   template: `
     <form #form="ngForm" (ngSubmit)="onSave()">
       <div class="form-field">
+        <label for="code">Code produit</label>
+        <input pInputText
+               type="text"
+               id="code"
+               name="code"
+               [(ngModel)]="editedProduct().code"
+               required>
+      </div>
+
+      <div class="form-field">
         <label for="name">Nom</label>
         <input pInputText
           type="text"
@@ -30,27 +40,34 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
       </div>
       <div class="form-field">
         <label for="price">Prix</label>
-        <p-inputNumber 
-          [(ngModel)]="editedProduct().price" 
+        <p-inputNumber
+          [(ngModel)]="editedProduct().price"
           name="price"
           mode="decimal"
-          required/> 
+          required/>
+      </div>
+      <div class="form-field">
+        <label for="quantity">Quantité</label>
+        <p-inputNumber
+          [(ngModel)]="editedProduct().quantity"
+          name="quantity"
+          required/>
       </div>
       <div class="form-field">
         <label for="description">Description</label>
-        <textarea pInputTextarea 
+        <textarea pInputTextarea
           id="description"
           name="description"
-          rows="5" 
-          cols="30" 
+          rows="5"
+          cols="30"
           [(ngModel)]="editedProduct().description">
         </textarea>
-      </div>      
+      </div>
       <div class="form-field">
         <label for="description">Catégorie</label>
-        <p-dropdown 
-          [options]="categories" 
-          [(ngModel)]="editedProduct().category" 
+        <p-dropdown
+          [options]="categories"
+          [(ngModel)]="editedProduct().category"
           name="category"
           appendTo="body"
         />
