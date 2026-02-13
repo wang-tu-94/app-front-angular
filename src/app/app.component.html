@@ -5,12 +5,13 @@
     <div class="p-toolbar-group-center">
         {{ title }}
     </div>
-    <div class="p-toolbar-group-end">
-        <app-cart-icon></app-cart-icon>
-    </div>
+  <div class="p-toolbar-group-end" style="display: flex; align-items: center; gap: 1rem;">
+    <app-cart-icon></app-cart-icon>
+    <app-account-icon></app-account-icon>
+  </div>
 </p-toolbar>
-<p-splitter 
-    [panelSizes]="[20, 80]" 
+<p-splitter
+    [panelSizes]="[20, 80]"
     [style]="{ height: 'calc(100vh - 100px)' }">
     <ng-template pTemplate>
         <div class="w-full">

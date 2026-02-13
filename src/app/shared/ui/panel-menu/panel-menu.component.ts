@@ -29,7 +29,11 @@ export class PanelMenuComponent {
       label: 'Contact',
       icon: 'pi pi-user',
       routerLink: ['/contacts']
+    },
+    {
+      label: 'Compte',
+      icon: 'pi pi-user-plus',
+      routerLink: ['/auth']
     }
   ]
 }
-  

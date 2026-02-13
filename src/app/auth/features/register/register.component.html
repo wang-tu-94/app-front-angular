@@ -1,0 +1,40 @@
+<p-card header="Création de compte" class="block m-2 text-center">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="contact-form">
+    <div class="p-field" [class.invalid]="isInvalid(username)" [class.valid]="isValid(username)">
+      <label for="username">Nom d'utilisateur</label>
+      <input id="username" pInputText formControlName="username" type="text" placeholder="Votre nom d'utilisateur" />
+    </div>
+
+    <div class="p-field" [class.invalid]="isInvalid(email)" [class.valid]="isValid(email)">
+      <label for="email">Email</label>
+      <input id="email" pInputText formControlName="email" type="email" placeholder="Votre email" />
+      @if (isInvalid(email)) {
+        <small class="p-error">Veuillez saisir un email valide.</small>
+      }
+    </div>
+
+    <div class="p-field" [class.invalid]="isInvalid(password)" [class.valid]="isValid(password)">
+      <label for="password">Mot de passe</label>
+      <input id="password" pInputText formControlName="password" type="password" placeholder="Votre mot de passe" />
+      @if (isInvalid(password)) {
+        <small class="p-error">
+          Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un symbole.
+        </small>
+      }
+    </div>
+
+    <div class="p-field" [class.invalid]="isInvalid(confirmPassword)" [class.valid]="isValid(confirmPassword)">
+      <label for="confirmPassword">Confirmer le mot de passe</label>
+      <input id="confirmPassword" pInputText formControlName="confirmPassword" type="password" placeholder="Répétez votre mot de passe" />
+      @if (isInvalid(confirmPassword)) {
+        @if (confirmPassword.errors?.['passwordMismatch']) {
+          <small class="p-error">Les mots de passe ne correspondent pas.</small>
+        }
+      }
+    </div>
+
+
+    <p-button type="submit" label="Envoyer"></p-button>
+  </form>
+</p-card>
+<p-toast #toast position="bottom-right" key="br" ></p-toast>

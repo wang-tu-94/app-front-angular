@@ -1,0 +1,55 @@
+<form [formGroup]="loginRequest" (ngSubmit)="onSubmit()" class="flex flex-column gap-4 p-2">
+
+  <div class="flex flex-column gap-2">
+    <label for="email" class="font-bold">Email</label>
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-envelope"></i>
+      </span>
+      <input
+        id="email"
+        pInputText
+        formControlName="email"
+        type="email"
+        placeholder="votre@email.com"
+        [class.ng-invalid]="isInvalid(email)"
+        [class.ng-dirty]="isInvalid(email)"
+      />
+    </div>
+    @if (isInvalid(email)) {
+      <small class="p-error ml-1">Veuillez saisir un email valide.</small>
+    }
+  </div>
+
+  <div class="flex flex-column gap-2">
+    <label for="password" class="font-bold">Mot de passe</label>
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-lock"></i>
+      </span>
+      <input
+        id="password"
+        pInputText
+        formControlName="password"
+        type="password"
+        placeholder="********"
+        [class.ng-invalid]="isInvalid(password)"
+        [class.ng-dirty]="isInvalid(password)"
+      />
+    </div>
+  </div>
+
+  <div class="flex flex-column mt-2">
+    <p-button
+      type="submit"
+      label="Se connecter"
+      icon="pi pi-sign-in"
+      [loading]="false"
+      [disabled]="loginRequest.invalid"
+      styleClass="w-full"
+    ></p-button>
+  </div>
+
+</form>
+
+<p-toast #toast position="bottom-right" key="br"></p-toast>
