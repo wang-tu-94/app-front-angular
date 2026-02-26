@@ -11,7 +11,7 @@ import {Page} from "../../core/model/page.model";
 export class ProductsService {
 
   private readonly http = inject(HttpClient);
-  private readonly path = "/api/v1/products";
+  private readonly path = "/api/product-backend/v1/products";
   private readonly API_URL = environment.apiUrl;
 
   private readonly _products = signal<Page<Product> | undefined>(undefined);

@@ -8,8 +8,8 @@ import {Account, LoginRequest, LoginResponse, RegisterRequest} from "./account.m
 export class AccountsService {
   private readonly TOKEN_KEY = 'auth_token';
   private readonly http = inject(HttpClient);
-  private readonly path = "/api/v1/accounts";
-  private readonly loginPath = "/api/v1/auth";
+  private readonly path = "/api/ms-auth/v1/accounts";
+  private readonly loginPath = "/api/ms-auth/v1/auth";
   private readonly API_URL = environment.apiUrl;
 
   private readonly _token = signal<string | null>(localStorage.getItem(this.TOKEN_KEY))
