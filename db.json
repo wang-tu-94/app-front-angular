@@ -1,19 +1,92 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
+  "page": {
+    "content": [
+      {
+        "id": "69b7c4cd85f76f961000b303",
+        "state": "ONLINE",
+        "name": "Home page",
+        "updatedDate": 1773651471939,
+        "publishedDate": 1773651471939,
+        "blocks": [
+          {
+            "type": "content-list",
+            "title": "Block Content List 1",
+            "description": "Description 1",
+            "subTitle": "Sous titre",
+            "contents": [
+              {
+                "title": "Titre Content 1",
+                "description": "Description Content 1",
+                "imageId": "Image Id 1"
+              },
+              {
+                "title": "Titre Content 2",
+                "description": "Description Content 2",
+                "imageId": "Image Id 2"
+              },
+              {
+                "title": "Titre Content 3",
+                "description": "Description Content 3",
+                "imageId": "Image Id 3"
+              }
+            ]
+          },
+          {
+            "type": "event",
+            "title": "Block Event 1",
+            "description": "Description 2",
+            "subTitle": "subtitle",
+            "content": {
+              "title": "Titre Content 1",
+              "description": "Description COntent 1",
+              "imageId": "Image Id 1"
+            }
+          },
+          {
+            "type": "image",
+            "title": "Block Image 1",
+            "description": "Description 3",
+            "imageId": "Image Id",
+            "imageUrl": "https://pixabay.com/fr/images/download/andsproject-woman-8706492_1920.png"
+          },
+          {
+            "type": "text",
+            "title": "Block Text 1",
+            "description": "Description 4",
+            "text": "Un texte long"
+          },
+          {
+            "type": "content-list",
+            "title": "Block Content List 2",
+            "description": "Description 5"
+          }
+        ]
+      },
+      {
+        "id": "69b7c4ed85f76f961000b304",
+        "state": "ONLINE",
+        "name": "Actu Page",
+        "updatedDate": 1773651462155,
+        "publishedDate": 1773651462155,
+        "blocks": []
+      },
+      {
+        "id": "69b7c4ed85f76f961000b305",
+        "state": "OFFLINE",
+        "name": "toto page",
+        "updatedDate": 1773651456370,
+        "publishedDate": 1773651456370
+      },
+      {
+        "id": "69b7c4ed85f76f961000b306",
+        "state": "DELETED",
+        "name": "titi",
+        "updatedDate": 1773651413718,
+        "publishedDate": 1773651413718
+      }
+    ],
+    "totalElements": 2,
+    "totalPages": 1,
+    "number": 0
   }
 }

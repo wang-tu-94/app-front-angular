@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { HomeComponent } from "./shared/features/home/home.component";
+import {CMS_ROUTES} from "./cms/cms.routes";
 
 export const APP_ROUTES: Routes = [
   {
@@ -26,5 +27,11 @@ export const APP_ROUTES: Routes = [
     loadChildren: () =>
       import("./auth/auth.routes").then((m) => m.AUTH_ROUTES)
   },
+  {
+    path: "cms",
+    loadChildren: () =>
+      import("./cms/cms.routes").then((m) => m.CMS_ROUTES)
+  },
+
   { path: "", redirectTo: "home", pathMatch: "full" },
 ];

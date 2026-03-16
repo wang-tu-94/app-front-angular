@@ -31,6 +31,11 @@ export class PanelMenuComponent {
       routerLink: ['/contacts']
     },
     {
+      label: 'CMS',
+      icon: 'pi pi-file-edit',
+      routerLink: ['/cms']
+    },
+    {
       label: 'Compte',
       icon: 'pi pi-user-plus',
       routerLink: ['/auth']
