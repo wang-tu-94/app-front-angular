@@ -34,10 +34,11 @@
            (onLazyLoad)="onLazyLoad($event)" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template #header>
       <tr>
-        <th>Name</th>
-        <th>State</th>
-        <th>Updated Date</th>
-        <th>Published Date</th>
+        <th>Nom</th>
+        <th>Statut</th>
+        <th>Date de mise à jour</th>
+        <th>Date de publication</th>
+        <th style="width: 5rem"></th>
       </tr>
     </ng-template>
     <ng-template #body let-page>
@@ -48,13 +49,16 @@
         </td>
         <td>{{ page.updatedDate | date: 'dd/MM/yyyy' }}</td>
         <td>{{ page.publishedDate | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="info" (onClick)="onEdit(page.id)" pTooltip="Gérer le contenu"></p-button>
+        </td>
       </tr>
 
     </ng-template>
 
     <ng-template #emptymessage>
       <tr>
-        <td colspan="4">Aucune donnée trouvée. Longueur du signal : {{ pages().length }}</td>
+        <td colspan="4">Aucune donnée trouvée.</td>
       </tr>
     </ng-template>
   </p-table>

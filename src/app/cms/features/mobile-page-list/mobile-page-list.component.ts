@@ -1,6 +1,6 @@
-import {Component, inject, OnInit, signal} from "@angular/core";
+import {Component, inject, OnDestroy, OnInit, signal} from "@angular/core";
 import {MobilePagesService} from "../../data-access/mobile-pages.service";
-import {MobilePage, MobilePageFilter, stateOptions} from "../../data-access/mobile-pages.model";
+import {MobilePage, MobilePageFilter, State, stateOptions} from "../../data-access/mobile-pages.model";
 import {TableLazyLoadEvent, TableModule} from "primeng/table";
 import {DataViewModule, DataViewPageEvent} from "primeng/dataview";
 import {DatePipe} from "@angular/common";
@@ -15,6 +15,9 @@ import {InputIcon} from "primeng/inputicon";
 import {IconField} from "primeng/iconfield";
 import {InputText} from "primeng/inputtext";
 import {Tooltip} from "primeng/tooltip";
+import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
+import {MobilePageCreateComponent} from "../../ui/mobile-page-create/mobile-page-create.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: "app-mobile-page-list",
@@ -37,9 +40,12 @@ import {Tooltip} from "primeng/tooltip";
     Tooltip
   ]
 })
-export class MobilePageListComponent implements OnInit {
+export class MobilePageListComponent implements OnDestroy {
   private readonly mobilePagesService = inject(MobilePagesService);
+  private readonly dialogService = inject(DialogService);
+  private readonly router = inject(Router);
 
+  private dialogRef: DynamicDialogRef | null | undefined;
   public readonly pages = this.mobilePagesService.pages;
   public readonly loading = this.mobilePagesService.loading;
   public readonly totalElements = this.mobilePagesService.totalElements;
@@ -53,10 +59,25 @@ export class MobilePageListComponent implements OnInit {
   public firstPage = signal(0);
   public size = signal(10);
 
-  ngOnInit() {
+  ngOnDestroy() {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
   }
 
   public onCreate() {
+    this.dialogRef = this.dialogService.open(MobilePageCreateComponent, {
+      header: 'Créer une nouvelle page',
+      width: '400px',
+      modal: true,
+      closable: false
+    });
+
+    this.dialogRef!.onClose.subscribe((success: boolean) => {
+      if (success) {
+        this.search();
+      }
+    });
   }
 
   public onLazyLoad(event: TableLazyLoadEvent) {
@@ -92,6 +113,12 @@ export class MobilePageListComponent implements OnInit {
       case "ONLINE": return "success"
       case "OFFLINE": return "info"
       case "DELETED": return"danger"
+    }
+  }
+
+  public onEdit(id: string) {
+    if (id) {
+      this.router.navigate(['cms/mobile/pages', id]);
     }
   }
 }

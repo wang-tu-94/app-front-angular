@@ -12,7 +12,6 @@ export interface MobilePage {
   updatedDate?: number;
   publishedDate?: number;
   blocks?: Block[];
-  email?: string;
 }
 
 export interface BaseBlock {

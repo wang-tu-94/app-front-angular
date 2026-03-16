@@ -44,8 +44,6 @@ export class MobilePagesService {
           this._pageNumber.set(response.number);
           this._totalPages.set(response.totalPages);
           this._totalElements.set(response.totalElements);
-          console.log(response);
-          console.log(this.pages());
         },
         error: () => {
           this._pages.set([]);

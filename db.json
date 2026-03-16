@@ -38,7 +38,7 @@
             "subTitle": "subtitle",
             "content": {
               "title": "Titre Content 1",
-              "description": "Description COntent 1",
+              "description": "Description Content 1",
               "imageId": "Image Id 1"
             }
           },
@@ -83,9 +83,16 @@
         "name": "titi",
         "updatedDate": 1773651413718,
         "publishedDate": 1773651413718
+      },
+      {
+        "id": "dimcpg282",
+        "name": "test",
+        "publishedDate": 1774047600000,
+        "state": "OFFLINE",
+        "blocks": []
       }
     ],
-    "totalElements": 4,
+    "totalElements": 5,
     "totalPages": 1,
     "number": 0
   }

@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column gap-4 mt-2">
+
+  <div class="flex flex-column gap-2">
+    <label for="name" class="font-bold">Nom de la page *</label>
+    <input id="name" pInputText formControlName="name" placeholder="Ex: Page d'accueil" class="w-full" />
+  </div>
+
+  <div class="flex flex-column gap-2">
+    <label for="publishedDate" class="font-bold">Date de publication</label>
+    <p-datePicker id="publishedDate" formControlName="publishedDate" dateFormat="dd/mm/yy" appendTo="body" class="w-full"></p-datePicker>
+  </div>
+
+  <div class="flex justify-content-end gap-2 mt-4">
+    <p-button label="Annuler" severity="secondary" (onClick)="onCancel()" [disabled]="isSaving()" />
+    <p-button label="Créer" type="submit" [disabled]="form.invalid" [loading]="isSaving()" />
+  </div>
+</form>
