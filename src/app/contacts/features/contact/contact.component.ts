@@ -1,17 +1,18 @@
 import {Component, inject, ViewChild} from "@angular/core";
 import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {InputTextareaModule} from "primeng/inputtextarea";
 import {Button, ButtonDirective} from "primeng/button";
 import {CardModule} from "primeng/card";
 import {PanelModule} from "primeng/panel";
 import {InputTextModule} from "primeng/inputtext";
 import {Toast, ToastModule} from "primeng/toast";
+import {TextareaModule} from "primeng/textarea";
 
 @Component({
-    selector: "app-contact",
-    templateUrl: "./contact.component.html",
-    styleUrls: ["./contact.component.scss"],
-    imports: [FormsModule, ReactiveFormsModule, InputTextareaModule, CardModule, PanelModule, Button, InputTextModule, ToastModule]
+  selector: "app-contact",
+  templateUrl: "./contact.component.html",
+  styleUrls: ["./contact.component.scss"],
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, TextareaModule, CardModule, PanelModule, Button, InputTextModule, ToastModule]
 })
 export class ContactComponent {
   @ViewChild('toast') toast!: Toast;

@@ -1,5 +1,5 @@
 import {Component, inject, input, Input, InputSignal, OnInit} from "@angular/core";
-import {CommonModule} from "@angular/common";
+
 import {Product} from "../../../products/data-access/product.model";
 import {CartsService} from "../../data-access/carts.service";
 import {Button} from "primeng/button";
@@ -7,10 +7,11 @@ import {InputNumberModule} from "primeng/inputnumber";
 import {FormsModule} from "@angular/forms";
 
 @Component({
-    selector: 'app-cart-controls',
-    imports: [CommonModule, Button, InputNumberModule, FormsModule],
-    templateUrl: "./cart-controls.component.html",
-    styleUrls: ["./cart-controls.component.scss"]
+  selector: 'app-cart-controls',
+  imports: [Button, InputNumberModule, FormsModule],
+  templateUrl: "./cart-controls.component.html",
+  standalone: true,
+  styleUrls: ["./cart-controls.component.scss"]
 })
 export class CartControlsComponent implements OnInit {
   product = input<Product>({})

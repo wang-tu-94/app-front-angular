@@ -5,10 +5,11 @@ import {MenuItem} from "primeng/api";
 import {PanelMenuModule} from 'primeng/panelmenu';
 
 @Component({
-    selector: "app-panel-menu",
-    imports: [PanelMenuModule],
-    template: `
-      <p-panelMenu [model]="items" styleClass="w-full"/>
+  selector: "app-panel-menu",
+  imports: [PanelMenuModule],
+  standalone: true,
+  template: `
+    <p-panelMenu [model]="items" styleClass="w-full"/>
   `
 })
 export class PanelMenuComponent {

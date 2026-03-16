@@ -11,13 +11,13 @@ import {CartControlsComponent} from "../../../carts/ui/cart-controls/cart-contro
 import {RatingModule} from "primeng/rating";
 import {FormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
-import {DropdownModule} from "primeng/dropdown";
 import {TagModule} from "primeng/tag";
 import {MenuModule} from "primeng/menu";
 import {MenuItem} from "primeng/api";
 import {SplitButtonModule} from "primeng/splitbutton";
 import {ToolbarModule} from "primeng/toolbar";
 import {CartsService} from "../../../carts/data-access/carts.service";
+import {SelectModule} from "primeng/select";
 
 const emptyProduct: Product = {
   code: "",
@@ -32,10 +32,11 @@ const emptyProduct: Product = {
 };
 
 @Component({
-    selector: "app-product-list",
-    templateUrl: "./product-list.component.html",
-    styleUrls: ["./product-list.component.scss"],
-    imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent, CommonModule, CartControlsComponent, RatingModule, FormsModule, InputTextModule, DropdownModule, TagModule, MenuModule, SplitButtonModule, ToolbarModule]
+  selector: "app-product-list",
+  templateUrl: "./product-list.component.html",
+  styleUrls: ["./product-list.component.scss"],
+  standalone: true,
+  imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent, CommonModule, CartControlsComponent, RatingModule, FormsModule, InputTextModule, SelectModule, TagModule, MenuModule, SplitButtonModule, ToolbarModule]
 })
 export class ProductListComponent implements OnInit {
   private readonly productsService = inject(ProductsService);
@@ -67,7 +68,7 @@ export class ProductListComponent implements OnInit {
   public getSeverity(product: Product) {
     switch (product.inventoryStatus) {
       case "INSTOCK": return "success"
-      case "LOWSTOCK": return"warning"
+      case "LOWSTOCK": return "warn"
       case "OUTOFSTOCK": return "danger"
     }
   }

@@ -8,16 +8,15 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import {categories, Product} from "app/products/data-access/product.model";
-import { SelectItem } from "primeng/api";
 import { ButtonModule } from "primeng/button";
-import { DropdownModule } from "primeng/dropdown";
 import { InputNumberModule } from "primeng/inputnumber";
 import { InputTextModule } from "primeng/inputtext";
-import { InputTextareaModule } from 'primeng/inputtextarea';
+import {SelectModule} from "primeng/select";
+import {TextareaModule} from "primeng/textarea";
 
 @Component({
-    selector: "app-product-form",
-    template: `
+  selector: "app-product-form",
+  template: `
     <form #form="ngForm" (ngSubmit)="onSave()">
       <div class="form-field">
         <label for="code">Code produit</label>
@@ -32,11 +31,11 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
       <div class="form-field">
         <label for="name">Nom</label>
         <input pInputText
-          type="text"
-          id="name"
-          name="name"
-          [(ngModel)]="editedProduct().name"
-          required>
+               type="text"
+               id="name"
+               name="name"
+               [(ngModel)]="editedProduct().name"
+               required>
       </div>
       <div class="form-field">
         <label for="price">Prix</label>
@@ -55,17 +54,17 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
       </div>
       <div class="form-field">
         <label for="description">Description</label>
-        <textarea pInputTextarea
-          id="description"
-          name="description"
-          rows="5"
-          cols="30"
-          [(ngModel)]="editedProduct().description">
+        <textarea pTextarea
+                  id="description"
+                  name="description"
+                  rows="5"
+                  cols="30"
+                  [(ngModel)]="editedProduct().description">
         </textarea>
       </div>
       <div class="form-field">
         <label for="description">Catégorie</label>
-        <p-dropdown
+        <p-select
           [options]="categories"
           [(ngModel)]="editedProduct().category"
           name="category"
@@ -78,16 +77,17 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
       </div>
     </form>
   `,
-    styleUrls: ["./product-form.component.scss"],
-    imports: [
-        FormsModule,
-        ButtonModule,
-        InputTextModule,
-        InputNumberModule,
-        InputTextareaModule,
-        DropdownModule,
-    ],
-    encapsulation: ViewEncapsulation.None
+  styleUrls: ["./product-form.component.scss"],
+  imports: [
+    FormsModule,
+    ButtonModule,
+    InputTextModule,
+    InputNumberModule,
+    TextareaModule,
+    SelectModule,
+  ],
+  standalone: true,
+  encapsulation: ViewEncapsulation.None
 })
 export class ProductFormComponent {
   public readonly product = input.required<Product>();

@@ -1,4 +1,4 @@
-import {enableProdMode, importProvidersFrom, LOCALE_ID} from "@angular/core";
+import {enableProdMode, importProvidersFrom, LOCALE_ID, provideZoneChangeDetection} from "@angular/core";
 
 import { registerLocaleData } from "@angular/common";
 import {
@@ -15,6 +15,9 @@ import { DialogService } from "primeng/dynamicdialog";
 import { AppComponent } from "./app/app.component";
 import { environment } from "./environments/environment";
 import {authInterceptor} from "./app/core/interceptors/auth.interceptor";
+import {providePrimeNG} from "primeng/config";
+import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
+import Aura from '@primeng/themes/aura';
 
 if (environment.production) {
   enableProdMode();
@@ -24,11 +27,17 @@ registerLocaleData(localeFr, "fr-FR");
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(BrowserModule),
+    provideZoneChangeDetection(),importProvidersFrom(BrowserModule),
     provideHttpClient(
       withInterceptorsFromDi(),
       withInterceptors([authInterceptor])
     ),
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: Aura
+      }
+    }),
     provideAnimations(),
     provideRouter(APP_ROUTES),
     ConfirmationService,

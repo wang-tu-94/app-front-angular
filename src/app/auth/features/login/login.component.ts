@@ -8,7 +8,6 @@ import {
   ValidatorFn,
   Validators
 } from "@angular/forms";
-import {InputTextareaModule} from "primeng/inputtextarea";
 import {Button, ButtonDirective} from "primeng/button";
 import {CardModule} from "primeng/card";
 import {PanelModule} from "primeng/panel";
@@ -17,12 +16,14 @@ import {Toast, ToastModule} from "primeng/toast";
 import {AccountsService} from "../../data-access/accounts.service";
 import {LoginRequest, RegisterRequest} from "../../data-access/account.model";
 import {DynamicDialogRef} from "primeng/dynamicdialog";
+import {TextareaModule} from "primeng/textarea";
 
 @Component({
-    selector: "app-login",
-    templateUrl: "./login.component.html",
-    styleUrls: ["./login.component.scss"],
-    imports: [FormsModule, ReactiveFormsModule, InputTextareaModule, CardModule, PanelModule, Button, InputTextModule, ToastModule]
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, TextareaModule, CardModule, PanelModule, Button, InputTextModule, ToastModule]
 })
 export class LoginComponent {
   @ViewChild('toast') toast!: Toast;

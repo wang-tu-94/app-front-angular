@@ -10,7 +10,7 @@
 
         <div class="p-field" [class.invalid]="isInvalid(message)" [class.valid]="isValid(message)">
             <label for="message">Message</label>
-            <textarea id="message" pInputTextarea formControlName="message" rows="5" maxlength="300"
+            <textarea id="message" pTextarea formControlName="message" rows="5" maxlength="300"
                       placeholder="Votre message (max 300 caractères)"></textarea>
             @if (isInvalid(message)) {
                 <small class="p-error">Le message est obligatoire.</small>

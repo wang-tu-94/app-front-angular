@@ -1,6 +1,5 @@
 /* PrimeNG */
 @import "primeicons/primeicons.css";
-@import "primeng/resources/primeng.min.css";
 
 /* Quill */
 @import "quill/dist/quill.core.css";
@@ -48,7 +47,7 @@ body {
     border: 0;
   }
 
-  .p-dropdown-trigger,
+  .p-select-trigger,
   .p-multiselect-trigger {
     display: none;
   }

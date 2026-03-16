@@ -51,3 +51,9 @@ export interface Content {
 
 export type Block = TextBlock | ImageBlock | EventBlock | ContentListBlock;
 export type State = "ONLINE" | "OFFLINE" | "DELETED"
+
+export const stateOptions = [
+  { label: 'En ligne', value: 'ONLINE' },
+  { label: 'Hors ligne', value: 'OFFLINE' },
+  { label: 'Supprimé', value: 'DELETED' }
+];
