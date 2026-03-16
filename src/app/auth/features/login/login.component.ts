@@ -19,11 +19,10 @@ import {LoginRequest, RegisterRequest} from "../../data-access/account.model";
 import {DynamicDialogRef} from "primeng/dynamicdialog";
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"],
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, InputTextareaModule, CardModule, PanelModule, Button, InputTextModule, ToastModule],
+    selector: "app-login",
+    templateUrl: "./login.component.html",
+    styleUrls: ["./login.component.scss"],
+    imports: [FormsModule, ReactiveFormsModule, InputTextareaModule, CardModule, PanelModule, Button, InputTextModule, ToastModule]
 })
 export class LoginComponent {
   @ViewChild('toast') toast!: Toast;

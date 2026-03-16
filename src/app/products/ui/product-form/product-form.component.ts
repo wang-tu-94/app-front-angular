@@ -16,8 +16,8 @@ import { InputTextModule } from "primeng/inputtext";
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
-  selector: "app-product-form",
-  template: `
+    selector: "app-product-form",
+    template: `
     <form #form="ngForm" (ngSubmit)="onSave()">
       <div class="form-field">
         <label for="code">Code produit</label>
@@ -78,17 +78,16 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
       </div>
     </form>
   `,
-  styleUrls: ["./product-form.component.scss"],
-  standalone: true,
-  imports: [
-    FormsModule,
-    ButtonModule,
-    InputTextModule,
-    InputNumberModule,
-    InputTextareaModule,
-    DropdownModule,
-  ],
-  encapsulation: ViewEncapsulation.None
+    styleUrls: ["./product-form.component.scss"],
+    imports: [
+        FormsModule,
+        ButtonModule,
+        InputTextModule,
+        InputNumberModule,
+        InputTextareaModule,
+        DropdownModule,
+    ],
+    encapsulation: ViewEncapsulation.None
 })
 export class ProductFormComponent {
   public readonly product = input.required<Product>();

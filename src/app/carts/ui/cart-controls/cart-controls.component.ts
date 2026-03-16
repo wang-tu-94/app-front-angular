@@ -7,11 +7,10 @@ import {InputNumberModule} from "primeng/inputnumber";
 import {FormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-cart-controls',
-  standalone: true,
-  imports: [CommonModule, Button, InputNumberModule, FormsModule],
-  templateUrl: "./cart-controls.component.html",
-  styleUrls: ["./cart-controls.component.scss"],
+    selector: 'app-cart-controls',
+    imports: [CommonModule, Button, InputNumberModule, FormsModule],
+    templateUrl: "./cart-controls.component.html",
+    styleUrls: ["./cart-controls.component.scss"]
 })
 export class CartControlsComponent implements OnInit {
   product = input<Product>({})

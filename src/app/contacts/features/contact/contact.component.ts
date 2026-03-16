@@ -8,11 +8,10 @@ import {InputTextModule} from "primeng/inputtext";
 import {Toast, ToastModule} from "primeng/toast";
 
 @Component({
-  selector: "app-contact",
-  templateUrl: "./contact.component.html",
-  styleUrls: ["./contact.component.scss"],
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, InputTextareaModule, CardModule, PanelModule, Button, InputTextModule, ToastModule],
+    selector: "app-contact",
+    templateUrl: "./contact.component.html",
+    styleUrls: ["./contact.component.scss"],
+    imports: [FormsModule, ReactiveFormsModule, InputTextareaModule, CardModule, PanelModule, Button, InputTextModule, ToastModule]
 })
 export class ContactComponent {
   @ViewChild('toast') toast!: Toast;

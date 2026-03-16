@@ -18,11 +18,10 @@ import {AccountsService} from "../../data-access/accounts.service";
 import {RegisterRequest} from "../../data-access/account.model";
 
 @Component({
-  selector: "app-register",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.scss"],
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, InputTextareaModule, CardModule, PanelModule, Button, InputTextModule, ToastModule],
+    selector: "app-register",
+    templateUrl: "./register.component.html",
+    styleUrls: ["./register.component.scss"],
+    imports: [FormsModule, ReactiveFormsModule, InputTextareaModule, CardModule, PanelModule, Button, InputTextModule, ToastModule]
 })
 export class RegisterComponent {
   @ViewChild('toast') toast!: Toast;

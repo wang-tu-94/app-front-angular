@@ -6,14 +6,13 @@ import {Button} from "primeng/button";
 import {AvatarModule} from "primeng/avatar";
 
 @Component({
-  selector: 'app-account-icon',
-  standalone: true,
-  templateUrl: "./account-icon.component.html",
-  styleUrls: ["./account-icon.component.scss"],
-  imports: [
-    Button,
-    AvatarModule
-  ]
+    selector: 'app-account-icon',
+    templateUrl: "./account-icon.component.html",
+    styleUrls: ["./account-icon.component.scss"],
+    imports: [
+        Button,
+        AvatarModule
+    ]
 })
 export class AccountIconComponent {
   private readonly dialogService = inject(DialogService);

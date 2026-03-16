@@ -4,7 +4,6 @@ import {RouterLink} from "@angular/router";
 
 @Component({
     selector: 'app-cart-icon',
-    standalone: true,
     templateUrl: "./cart-icon.component.html",
     styleUrls: ["./cart-icon.component.scss"],
     imports: [

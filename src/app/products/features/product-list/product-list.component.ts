@@ -32,11 +32,10 @@ const emptyProduct: Product = {
 };
 
 @Component({
-  selector: "app-product-list",
-  templateUrl: "./product-list.component.html",
-  styleUrls: ["./product-list.component.scss"],
-  standalone: true,
-  imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent, CommonModule, CartControlsComponent, RatingModule, FormsModule, InputTextModule, DropdownModule, TagModule, MenuModule, SplitButtonModule, ToolbarModule],
+    selector: "app-product-list",
+    templateUrl: "./product-list.component.html",
+    styleUrls: ["./product-list.component.scss"],
+    imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent, CommonModule, CartControlsComponent, RatingModule, FormsModule, InputTextModule, DropdownModule, TagModule, MenuModule, SplitButtonModule, ToolbarModule]
 })
 export class ProductListComponent implements OnInit {
   private readonly productsService = inject(ProductsService);

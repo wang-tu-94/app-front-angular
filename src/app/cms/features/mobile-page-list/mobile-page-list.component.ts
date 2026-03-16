@@ -11,19 +11,18 @@ import {categories} from "../../../products/data-access/product.model";
 import {BadgeModule} from "primeng/badge";
 
 @Component({
-  selector: "app-mobile-page-list",
-  templateUrl: "./mobile-page-list.component.html",
-  styleUrls: ["./mobile-page-list.component.scss"],
-  standalone: true,
-  imports: [
-    TableModule,
-    DataViewModule,
-    DatePipe,
-    Button,
-    DropdownModule,
-    ToolbarModule,
-    BadgeModule
-  ],
+    selector: "app-mobile-page-list",
+    templateUrl: "./mobile-page-list.component.html",
+    styleUrls: ["./mobile-page-list.component.scss"],
+    imports: [
+        TableModule,
+        DataViewModule,
+        DatePipe,
+        Button,
+        DropdownModule,
+        ToolbarModule,
+        BadgeModule
+    ]
 })
 export class MobilePageListComponent implements OnInit {
   private readonly mobilePagesService = inject(MobilePagesService);
