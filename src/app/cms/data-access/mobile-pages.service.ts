@@ -33,7 +33,9 @@ export class MobilePagesService {
   search(filter: MobilePageFilter = {}, page: number = 0, size: number = 10) {
     this._loading.set(true);
 
-    const params = new HttpParams({ fromObject: { ...filter, page, size } });
+    const params = Object.fromEntries(
+      Object.entries({ ...filter, page, size }).filter(([_, v]) => v != null)
+    );
 
     this.http.get<SpringPage<MobilePage>>(`${this.API_URL}${this.path}`, { params })
       .pipe(finalize(() => this._loading.set(false)))
