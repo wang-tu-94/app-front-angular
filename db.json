@@ -1,4 +1,173 @@
 {
+  "products": {
+    "content": [
+      {
+        "category": "Accessories",
+        "code": "f230fh0g3",
+        "description": "Product Description",
+        "id": 1000,
+        "image": "bamboo-watch.jpg",
+        "internalReference": "REF-123-456",
+        "inventoryStatus": "INSTOCK",
+        "name": "Bamboo Watch",
+        "price": 65.0,
+        "quantity": 10,
+        "rating": 5.0,
+        "shellId": 15
+      },
+      {
+        "category": "Accessories",
+        "code": "nvklal433",
+        "description": "Product Description",
+        "id": 1001,
+        "image": "black-watch.jpg",
+        "internalReference": "REF-123-456",
+        "inventoryStatus": "INSTOCK",
+        "name": "Black Watch",
+        "price": 72.0,
+        "quantity": 5,
+        "rating": 4.0,
+        "shellId": 15
+      },
+      {
+        "category": "Fitness",
+        "code": "zz21cz3c1",
+        "description": "Product Description",
+        "id": 1002,
+        "image": "blue-band.jpg",
+        "internalReference": "REF-123-456",
+        "inventoryStatus": "LOWSTOCK",
+        "name": "Blue Band",
+        "price": 79.0,
+        "quantity": 11,
+        "rating": 3.0,
+        "shellId": 15
+      },
+      {
+        "category": "Clothing",
+        "code": "244wgerg2",
+        "description": "Product Description",
+        "id": 1003,
+        "image": "blue-t-shirt.jpg",
+        "internalReference": "REF-123-456",
+        "inventoryStatus": "INSTOCK",
+        "name": "Blue T-Shirt",
+        "price": 29.0,
+        "quantity": 30,
+        "rating": 5.0,
+        "shellId": 15
+      },
+      {
+        "category": "Accessories",
+        "code": "h456wer53",
+        "description": "Product Description",
+        "id": 1004,
+        "image": "bracelet.jpg",
+        "internalReference": "REF-123-456",
+        "inventoryStatus": "INSTOCK",
+        "name": "Bracelet",
+        "price": 15.0,
+        "quantity": 16,
+        "rating": 4.0,
+        "shellId": 15
+      },
+      {
+        "category": "Accessories",
+        "code": "av2231fwg",
+        "description": "Product Description",
+        "id": 1005,
+        "image": "brown-purse.jpg",
+        "internalReference": "REF-123-456",
+        "inventoryStatus": "OUTOFSTOCK",
+        "name": "Brown Purse",
+        "price": 120.0,
+        "quantity": 50,
+        "rating": 4.0,
+        "shellId": 15
+      },
+      {
+        "category": "Accessories",
+        "code": "bib36pfvm",
+        "description": "Product Description",
+        "id": 1006,
+        "image": "chakra-bracelet.jpg",
+        "internalReference": "REF-123-456",
+        "inventoryStatus": "LOWSTOCK",
+        "name": "Chakra Bracelet",
+        "price": 32.0,
+        "quantity": 0,
+        "rating": 3.0,
+        "shellId": 15
+      },
+      {
+        "category": "Accessories",
+        "code": "mbvjkgip5",
+        "description": "Product Description",
+        "id": 1007,
+        "image": "galaxy-earrings.jpg",
+        "internalReference": "REF-123-456",
+        "inventoryStatus": "INSTOCK",
+        "name": "Galaxy Earrings",
+        "price": 34.0,
+        "quantity": 50,
+        "rating": 5.0,
+        "shellId": 15
+      },
+      {
+        "category": "Electronics",
+        "code": "vbb124btr",
+        "description": "Product Description",
+        "id": 1008,
+        "image": "game-controller.jpg",
+        "internalReference": "REF-123-456",
+        "inventoryStatus": "LOWSTOCK",
+        "name": "Game Controller",
+        "price": 99.0,
+        "quantity": 99,
+        "rating": 4.0,
+        "shellId": 15
+      },
+      {
+        "category": "Electronics",
+        "code": "cm230f032",
+        "description": "Product Description",
+        "id": 1009,
+        "image": "gaming-set.jpg",
+        "internalReference": "REF-123-456",
+        "inventoryStatus": "INSTOCK",
+        "name": "Gaming Set",
+        "price": 299.0,
+        "quantity": 20,
+        "rating": 3.0,
+        "shellId": 15
+      }
+    ],
+    "empty": false,
+    "first": true,
+    "last": false,
+    "number": 0,
+    "numberOfElements": 10,
+    "pageable": {
+      "offset": 0,
+      "pageNumber": 0,
+      "pageSize": 10,
+      "paged": true,
+      "sort": {
+        "empty": false,
+        "sorted": true,
+        "unsorted": false
+      },
+      "unpaged": false
+    },
+    "size": 10,
+    "sort": {
+      "empty": false,
+      "sorted": true,
+      "unsorted": false
+    },
+    "totalElements": 30,
+    "totalPages": 3
+  },
   "page": {
     "content": [
       {

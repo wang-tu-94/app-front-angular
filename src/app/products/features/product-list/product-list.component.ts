@@ -122,7 +122,12 @@ export class ProductListComponent implements OnInit {
   }
 
   protected onPageChange($event: DataViewPageEvent) {
-    this.filter.page = $event.first / $event.rows;
+    const newPage = $event.first / $event.rows;
+
+    this.filter = {
+      ...this.filter,
+      page: newPage
+    };
 
     this.search();
   }

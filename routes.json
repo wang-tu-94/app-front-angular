@@ -1,4 +1,5 @@
 {
   "/api/ms-cms/v1/mobile/page/:id": "/mobile-page/:id",
+  "/api/product-backend/v1/products*": "/products$1",
   "/api/ms-cms/v1/mobile/page*": "/page$1"
 }

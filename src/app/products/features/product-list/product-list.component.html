@@ -16,9 +16,9 @@
 <p-dataView #dv [value]="products()?.content" [rows]="products()?.size" [paginator]="true"
             [paginatorPosition]="'top'" [totalRecords]="products()?.totalElements"
             [showPageLinks]="true" (onPage)="onPageChange($event)" [lazy]="true">
-    <ng-template pTemplate="list" let-products>
+    <ng-template #list let-items>
         <div class="grid grid-nogutter">
-            @for (item of products; track item; let first = $first) {
+            @for (item of items; track item; let first = $first) {
                 <div class="col-12 relative">
                     <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3"
                          [ngClass]="{ 'border-top-1 surface-border': !first }">
