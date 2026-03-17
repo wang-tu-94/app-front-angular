@@ -4,6 +4,7 @@ import {environment} from "../../../environments/environment";
 import {finalize, map, Observable, tap} from "rxjs";
 import {BlockHydrators, MobilePage, MobilePageFilter} from "./mobile-pages.model";
 import {SpringPage} from "../../shared/data-access/page.model";
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({providedIn: 'root'})
 export class MobilePagesService {
@@ -61,7 +62,7 @@ export class MobilePagesService {
         page.blocks ??= [];
 
         page.blocks.forEach(block => {
-          block._id = randomUUID();
+          block._id = uuidv4();
           BlockHydrators[block.type]?.(block);
         });
         return page;
