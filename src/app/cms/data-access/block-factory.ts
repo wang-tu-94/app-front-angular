@@ -1,11 +1,12 @@
 // utils/block-factory.ts
 
 import {BaseBlock, Block, ContentListBlock, EventBlock} from "./mobile-pages.model";
+import {randomUUID} from "node:crypto";
 
 export class BlockFactory {
 
   static create(type: string): Block {
-    const baseId = crypto.randomUUID();
+    const baseId = randomUUID();
 
     switch (type) {
       case 'text':
@@ -26,7 +27,7 @@ export class BlockFactory {
           type: 'event',
           title: 'Nouvel événement',
           content: {
-            _id: crypto.randomUUID()
+            _id: randomUUID()
           }
         } as EventBlock;
 
@@ -37,7 +38,7 @@ export class BlockFactory {
           title: 'Nouvelle liste de contenus',
           subTitle: '',
           contents: [
-            { _id: crypto.randomUUID(), title: 'Élément 1', description: '' }
+            { _id: randomUUID(), title: 'Élément 1', description: '' }
           ]
         } as ContentListBlock;
 

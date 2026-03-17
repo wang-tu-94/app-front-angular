@@ -1,3 +1,5 @@
+import {randomUUID} from "node:crypto";
+
 export interface MobilePageFilter {
   name?: string;
   state?: State;
@@ -61,15 +63,15 @@ export const stateOptions = [
 export const BlockHydrators: Record<string, (block: any) => void> = {
   'event': (b) => {
     b.content ??= {};
-    b.content._id ??= crypto.randomUUID();
+    b.content._id ??= randomUUID();
   },
 
   'content-list': (b) => {
-    b._id ??= crypto.randomUUID(); // ID transient du bloc
+    b._id ??= randomUUID(); // ID transient du bloc
     b.contents ??= [];
     b.contents.forEach((c: any) => {
       c ??= {};
-      c._id ??= crypto.randomUUID(); // ID transient du sous-contenu
+      c._id ??= randomUUID(); // ID transient du sous-contenu
     });
   }
 };

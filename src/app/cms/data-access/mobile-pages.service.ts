@@ -61,7 +61,7 @@ export class MobilePagesService {
         page.blocks ??= [];
 
         page.blocks.forEach(block => {
-          block._id = crypto.randomUUID();
+          block._id = randomUUID();
           BlockHydrators[block.type]?.(block);
         });
         return page;

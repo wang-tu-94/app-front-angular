@@ -9,6 +9,7 @@ import {Button} from "primeng/button";
 import {ContentEditorComponent} from "../../../../ui/content-editor/content-editor.component";
 import {Accordion, AccordionContent, AccordionHeader, AccordionPanel} from "primeng/accordion";
 import {Tooltip} from "primeng/tooltip";
+import {randomUUID} from "node:crypto";
 
 @Component({
   selector: "app-content-list-block",
@@ -57,7 +58,7 @@ export class ContentListBlockComponent extends BaseBlockComponent<ContentListBlo
   }
 
   public addContent() {
-    const id = crypto.randomUUID();
+    const id = randomUUID();
     this.block().contents.push({
       _id: id,
       title: 'Nouveau contenu',
