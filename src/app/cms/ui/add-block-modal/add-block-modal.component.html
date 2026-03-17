@@ -1,0 +1,26 @@
+<p-dialog
+  header="Ajouter un bloc"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '60vw', maxWidth: '800px' }"
+  [draggable]="false"
+  [resizable]="false">
+
+  <div class="grid mt-3">
+
+    @for (template of templatesArray; track template.type) {
+      <div class="col-12 md:col-4 p-2">
+
+        <div
+          class="block-preview-card"
+          [style.background-image]="'linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%), url(' + template.image + ')'"
+          (click)="selectBlock(template.type)">
+
+          <span class="block-preview-title">{{ template.label }}</span>
+        </div>
+
+      </div>
+    }
+
+  </div>
+</p-dialog>

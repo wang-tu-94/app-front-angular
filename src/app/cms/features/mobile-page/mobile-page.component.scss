@@ -1,0 +1,17 @@
+.editor-container {
+  height: calc(100vh - 100px);
+  position: relative;
+  overflow-y: auto;
+  transition: margin-right 0.3s cubic-bezier(0, 0, 0.2, 1);
+  scrollbar-width: thin;
+  scrollbar-color: var(--p-surface-300) transparent;
+}
+
+.sidebar-open {
+  margin-right: 30rem;
+}
+
+.block-item-row {
+  background: var(--p-surface-0);
+  user-select: none;
+}

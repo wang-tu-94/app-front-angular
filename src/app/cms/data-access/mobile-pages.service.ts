@@ -1,8 +1,8 @@
 import {Injectable, signal, inject, computed} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {finalize, Observable, tap} from "rxjs";
-import {MobilePage, MobilePageFilter} from "./mobile-pages.model";
+import {finalize, map, Observable, tap} from "rxjs";
+import {BlockHydrators, MobilePage, MobilePageFilter} from "./mobile-pages.model";
 import {SpringPage} from "../../shared/data-access/page.model";
 
 @Injectable({providedIn: 'root'})
@@ -20,7 +20,6 @@ export class MobilePagesService {
   private readonly _totalElements = signal<number>(0);
 
   public readonly pages = this._pages.asReadonly();
-  public readonly selectedPage = this._selectedPage.asReadonly();
   public readonly loading = this._loading.asReadonly();
 
   public readonly pageNumber = this._pageNumber.asReadonly();
@@ -55,30 +54,25 @@ export class MobilePagesService {
   }
 
   get(id: string) {
-    this._loading.set(true);
+    return this.http.get<MobilePage>(`${this.API_URL}${this.path}/${id}`).pipe(
+      map(page => {
+        page.blocks ??= [];
 
-    this.http.get<MobilePage>(`${this.API_URL}${this.path}/${id}`)
-      .pipe(finalize(() => this._loading.set(false)))
-      .subscribe({
-        next: (page) => this._selectedPage.set(page),
-        error: () => this._selectedPage.set(null)
-      });
+        page.blocks.forEach(block => {
+          block._id = crypto.randomUUID();
+          BlockHydrators[block.type]?.(block);
+        });
+        return page;
+      })
+    )
   }
 
   save(page: MobilePage) {
-    return this.http.post<MobilePage>(`${this.API_URL}${this.path}`, page).pipe(
-      tap(newPage => {
-        this._selectedPage.set(newPage);
-      }),
-      finalize(() => this._loading.set(false))
-    );
+    return this.http.post<MobilePage>(`${this.API_URL}${this.path}`, page);
   }
 
   clearSelection() {
     this._selectedPage.set(null);
   }
-
-
-
 
 }

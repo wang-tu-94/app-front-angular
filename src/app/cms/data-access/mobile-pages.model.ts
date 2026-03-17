@@ -15,6 +15,7 @@ export interface MobilePage {
 }
 
 export interface BaseBlock {
+  _id: string;
   title?: string;
   description?: string;
 }
@@ -33,16 +34,17 @@ export interface ImageBlock extends BaseBlock {
 export interface EventBlock extends BaseBlock {
   type: 'event';
   subTitle?: string;
-  content?: Content;
+  content: Content;
 }
 
 export interface ContentListBlock extends BaseBlock {
   type: 'content-list';
   subTitle?: string;
-  contents?: Content[];
+  contents: Content[];
 }
 
 export interface Content {
+  _id: string;
   title?: string;
   description?: string;
   imageId?: string;
@@ -56,3 +58,18 @@ export const stateOptions = [
   { label: 'Hors ligne', value: 'OFFLINE' },
   { label: 'Supprimé', value: 'DELETED' }
 ];
+export const BlockHydrators: Record<string, (block: any) => void> = {
+  'event': (b) => {
+    b.content ??= {};
+    b.content._id ??= crypto.randomUUID();
+  },
+
+  'content-list': (b) => {
+    b._id ??= crypto.randomUUID(); // ID transient du bloc
+    b.contents ??= [];
+    b.contents.forEach((c: any) => {
+      c ??= {};
+      c._id ??= crypto.randomUUID(); // ID transient du sous-contenu
+    });
+  }
+};

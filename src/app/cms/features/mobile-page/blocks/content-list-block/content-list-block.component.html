@@ -1,0 +1,71 @@
+<div class="p-3 surface-card border-round shadow-1">
+  <h2 class="mt-0 mb-4 outline-none" [(appContentEditable)]="block().title"></h2>
+  <div class="content-list-scroll custom-scrollbar">
+    @for (item of block().contents; track item._id) {
+      <div [id]="'center-card-' + item._id"
+           class="content-card" (click)="openPanel(item)"
+           [style.background-image]="item.imageId
+            ? 'linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%), url(' + item.imageId + ')'
+            : 'linear-gradient(to bottom, var(--surface-600), var(--surface-900))'">
+
+        <h4 class="content-card-title" [(appContentEditable)]="item.title"></h4>
+
+        <p class="content-card-desc" [(appContentEditable)]="item.description"></p>
+
+      </div>
+    }
+
+  </div>
+</div>
+
+<ng-template #editor>
+  <div class="flex flex-column gap-4 p-fluid">
+
+    <div class="field">
+      <label class="font-bold block mb-2">Titre du bloc</label>
+      <input pInputText class="w-full" [(ngModel)]="block().title"/>
+    </div>
+    <div class="field">
+      <label class="font-bold block mb-2">Sous-titre</label>
+      <input pInputText class="w-full" [(ngModel)]="block().subTitle"/>
+    </div>
+    <div class="flex justify-content-between align-items-center border-top-1 surface-border pt-4 mb-3">
+      <label class="font-bold m-0">Contenus ({{ block().contents.length || 0 }})</label>
+      <p-button icon="pi pi-plus" label="Ajouter" size="small" [outlined]="true" (onClick)="addContent()"></p-button>
+    </div>
+
+    <p-accordion [multiple]="true" [(value)]="activePanels">
+      <div cdkDropList (cdkDropListDropped)="drop($event)" class="flex flex-column gap-3">
+        @for (item of block().contents; track item._id) {
+          <p-accordion-panel [id]="'sidebar-panel-' + (item._id)" [value]="item._id" cdkDrag
+                             class="surface-card border-1 surface-border border-round shadow-1">
+            <p-accordion-header>
+              <div class="flex align-items-center w-full gap-2">
+                <i class="pi pi-bars cursor-move text-500 hover:text-primary p-2" cdkDragHandle
+                   (click)="$event.stopPropagation(); $event.preventDefault()"></i>
+                <span class="text-overflow-ellipsis white-space-nowrap overflow-hidden" style="max-width: 150px;">
+              {{ item.title || 'Sans titre' }}
+            </span>
+
+                <div class="ml-auto flex align-items-center gap-1">
+                  <p-button icon="pi pi-eye" severity="secondary" [text]="true" size="small"
+                            pTooltip="Voir la carte" tooltipPosition="left"
+                            (onClick)="scrollToCenterCard(item, $event)">
+                  </p-button>
+                  <p-button icon="pi pi-trash" severity="danger" [text]="true" size="small"
+                            (onClick)="removeContent($index); $event.stopPropagation(); $event.preventDefault()">
+                  </p-button>
+                </div>
+              </div>
+            </p-accordion-header>
+            <p-accordion-content>
+              <app-content-editor [(content)]="block().contents![$index]"></app-content-editor>
+            </p-accordion-content>
+          </p-accordion-panel>
+
+        }
+
+      </div>
+    </p-accordion>
+  </div>
+</ng-template>

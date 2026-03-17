@@ -77,3 +77,51 @@ body {
   height: 14px !important;
   color: transparent;
 }
+
+/* ==========================================================================
+   ANGULAR CDK DRAG & DROP - STYLES GLOBAUX
+   ========================================================================== */
+
+/* 1. L'élément en train d'être glissé (sous la souris) */
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: var(--border-radius, 8px);
+  /* Belle ombre pour l'effet "soulevé" */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--surface-card, #ffffff);
+  /* Un léger effet de zoom pour montrer qu'on le tient */
+  transform: scale(1.02);
+  z-index: 1000;
+  cursor: grabbing !important;
+}
+
+/* On force le curseur sur tout l'élément pendant le drag */
+.cdk-drag-preview * {
+  cursor: grabbing !important;
+}
+
+/* 2. Le "trou" laissé dans la liste (le placeholder) */
+.cdk-drag-placeholder {
+  opacity: 1;
+  /* Bordure pointillée aux couleurs de ton thème (PrimeNG) */
+  border: 2px dashed var(--primary-color, #3b82f6);
+  background-color: var(--surface-50, #f8fafc);
+  border-radius: var(--border-radius, 8px);
+  /* Transition douce pour l'apparition du trou */
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Astuce de pro : On cache le contenu à l'intérieur du trou pour ne voir que la bordure */
+.cdk-drag-placeholder * {
+  visibility: hidden;
+}
+
+/* 3. L'animation fluide quand on lâche l'élément (il "glisse" vers sa place) */
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* 4. L'animation des autres éléments qui s'écartent pour faire de la place */
+.cdk-drop-list-dragging .cdk-drag {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

@@ -1,0 +1,19 @@
+<div class="p-3">
+  <h4 class="mt-0 mb-2" [(appContentEditable)]="block().title">{{ block().title || 'Image sans titre' }}</h4>
+  <p class="m-0 outline-none line-height-3 text-700" [(appContentEditable)]="block().text">
+  </p>
+</div>
+
+<ng-template #editor>
+  <div class="flex flex-column gap-4 p-fluid">
+    <div class="field">
+      <label class="font-bold block mb-2">Titre du bloc</label>
+      <input pInputText class="w-full" [(ngModel)]="block().title" />
+    </div>
+    <div class="field">
+      <label class="font-bold block mb-2">Texte du bloc</label>
+      <textarea pTextarea class="w-full" [(ngModel)]="block().text" rows="5" maxlength="300"
+                placeholder="Votre texte (max 300 caractères)"></textarea>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,89 @@
+.custom-scrollbar {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--surface-200);
+  padding-bottom: 1rem;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--surface-200);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+
+
+/* Container du scroll horizontal */
+.content-list-scroll {
+  display: flex;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+/* La Carte */
+.content-card {
+  flex-shrink: 0;
+  width: 16rem;
+  height: 20rem;
+  padding: 1.5rem;
+  border-radius: var(--border-radius, 8px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  /* Layout interne */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* Image de fond */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+
+  /* Comportement au scroll */
+  scroll-snap-align: start;
+
+  /* On remplace la bordure blanche stricte par une bordure transparente par défaut (ou blanche, au choix) */
+  border: 2px solid rgba(255, 255, 255, 0.2);
+
+  /* On prépare le terrain pour l'animation au survol */
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  cursor: pointer; /* Indique que c'est cliquable */
+}
+
+/* LE HOVER MAGIQUE */
+.content-card:hover {
+  /* On utilise la couleur primaire de ton thème PrimeNG */
+  border-color: var(--primary-color, #3b82f6);
+  /* Petit bonus : la carte se soulève de 2 pixels */
+  transform: translateY(-2px);
+}
+
+/* Titre de la carte */
+.content-card-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+  outline: none; /* Retire la bordure bleue au clic */
+}
+
+/* Description de la carte */
+.content-card-desc {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8); /* Blanc légèrement transparent */
+  font-size: 0.875rem;
+  line-height: 1.5;
+  position: relative;
+  z-index: 1;
+  outline: none;
+}

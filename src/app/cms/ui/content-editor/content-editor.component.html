@@ -1,0 +1,19 @@
+<div class="flex flex-column gap-3 surface-50 p-3 border-round border-1 surface-border">
+  <div class="field m-0">
+    <label class="font-semibold text-sm block mb-2">Titre du contenu</label>
+    <input pInputText [(ngModel)]="content().title" placeholder="Titre..." class="w-full" />
+  </div>
+
+  <div class="field m-0">
+    <label class="font-semibold text-sm block mb-2">Description</label>
+    <textarea pTextarea [(ngModel)]="content().description" rows="3" class="w-full" placeholder="Description..."></textarea>
+  </div>
+
+  <div class="field m-0">
+    <label class="font-semibold text-sm block mb-2">ID de l'image</label>
+    <div class="p-inputgroup gap-1">
+      <input pInputText class="w-full" [(ngModel)]="content().imageId" placeholder="Ex: img_12345" />
+    </div>
+  </div>
+
+</div>

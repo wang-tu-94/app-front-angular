@@ -6,13 +6,11 @@ import {DataViewModule} from "primeng/dataview";
 import {CardModule} from "primeng/card";
 import {CartControlsComponent} from "../../ui/cart-controls/cart-controls.component";
 import {CartsService} from "../../data-access/carts.service";
-import {Button} from "primeng/button";
 import {TagModule} from "primeng/tag";
-import {Cart} from "../../data-access/cart.model";
 
 @Component({
     selector: 'app-cart',
-    imports: [CommonModule, InputNumberModule, FormsModule, DataViewModule, CardModule, CartControlsComponent, Button, TagModule],
+    imports: [CommonModule, InputNumberModule, FormsModule, DataViewModule, CardModule, CartControlsComponent, TagModule],
     templateUrl: "./cart.component.html",
     styleUrls: ["./cart.component.scss"]
 })

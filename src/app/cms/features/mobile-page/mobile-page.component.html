@@ -1,3 +1,131 @@
-<div>
-  TOTO
-</div>
+@if (mobilePage(); as page) {
+  <div class="editor-container" [class.sidebar-open]="sidebarVisible()">
+    <div class="p-4" >>
+      <div class="flex align-items-center justify-content-between mb-4">
+        <div class="flex align-items-center gap-2">
+          <p-button icon="pi pi-arrow-left" [rounded]="true" [text]="true" severity="secondary" (onClick)="goBack()"></p-button>
+          <h2 class="m-0 text-2xl font-semibold text-900">Édition : {{ page.name }}</h2>
+        </div>
+        <p-button label="Sauvegarder" icon="pi pi-save" (onClick)="save()" [loading]="isSaving()"></p-button>
+      </div>
+
+      <div class="surface-card border-1 surface-border border-round p-4 mb-5 shadow-1">
+        <h3 class="mt-0 mb-4 text-xl font-medium text-900">Informations de base</h3>
+
+        <div class="grid formgrid p-fluid">
+          <div class="field col-12 md:col-6">
+            <label for="name" class="font-bold block mb-2 text-700">Nom de la page</label>
+            <input id="name" pInputText type="text" [(ngModel)]="page.name" />
+          </div>
+
+          <div class="field col-12 md:col-3">
+            <label for="state" class="font-bold block mb-2 text-700">État</label>
+            <p-select inputId="state" [options]="stateOptions" [(ngModel)]="page.state" optionLabel="label" optionValue="value" class="w-full"></p-select>
+          </div>
+
+          <div class="field col-12 md:col-3">
+            <label for="publishedDate" class="font-bold block mb-2 text-700">Date de publication</label>
+            <p-datePicker inputId="publishedDate" [(ngModel)]="uiPublishedDate" dateFormat="dd/mm/yy" class="w-full"></p-datePicker>
+          </div>
+        </div>
+      </div>
+
+      <div class="surface-card border-1 surface-border border-round p-4 shadow-1">
+
+        <div class="flex align-items-center justify-content-between mb-4">
+          <h3 class="m-0 text-xl font-medium text-900">Contenu ({{ page.blocks?.length || 0 }} blocs)</h3>
+          <div class="flex gap-2">
+            <p-button icon="pi pi-list" label="Éditer la structure" size="small" outlined="true" (click)="openSidebar()"></p-button>
+            <p-button icon="pi pi-plus" label="Ajouter un bloc" size="small" outlined="true" (click)="onOpenAddModal()"></p-button>
+          </div>
+        </div>
+        <div class="border-2 border-dashed border-round surface-border p-6 text-center cursor-pointer hover:surface-100 hover:border-primary transition-colors transition-duration-200" (click)="openSidebar()">
+          <p class="m-0 text-lg font-bold text-600">Liste des blocs de contenu</p>
+          @for (block of page.blocks; track block._id) {
+            <div class="surface-card mb-3 border-round border-1 surface-border hover:border-primary cursor-pointer text-left"
+              [id]="'block-' + block._id" (click)="openEditor($index); $event.stopPropagation()">
+              @switch (block.type) {
+                @case ('image') {
+                  <app-image-block #blockInstance [block]="block" />
+                }
+                @case ('text') {
+                  <app-text-block #blockInstance [block]="block" />
+                }
+                @case ('event') {
+                  <app-event-block #blockInstance [block]="block" />
+                }
+                @case ('content-list') {
+                  <app-content-list-block #blockInstance [block]="block" />
+                }
+              }
+
+            </div>
+          }
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <p-drawer
+    [(visible)]="sidebarVisible"
+    position="right"
+    styleClass="w-30rem"
+    [modal]="false"
+    [header]="activeTemplate() ? 'Configuration du bloc' : 'Structure de la page'">
+
+    <div class="p-fluid">
+      @if (activeTemplate()) {
+        <div class="animate-fadein">
+          <ng-container *ngTemplateOutlet="activeTemplate(); context: { $implicit: activeBlock() }"></ng-container>
+
+          <div class="flex justify-content-end gap-2 mt-5 pt-4 border-top-1 surface-border">
+            <p-button label="Retour à la liste" severity="secondary" [text]="true" (onClick)="activeTemplate.set(null)"></p-button>
+            <p-button label="Terminer" icon="pi pi-check" (onClick)="closeSidebar()"></p-button>
+          </div>
+        </div>
+      } @else {
+        <div class="flex flex-column gap-3">
+          <p-button label="Ajouter un nouveau bloc" icon="pi pi-plus" [outlined]="true" severity="primary" class="mt-2 ml-auto" (click)="onOpenAddModal()"></p-button>
+
+          <div cdkDropList class="block-list-container" (cdkDropListDropped)="drop($event)">
+
+            @for (block of mobilePage()?.blocks; track block._id) {
+              <div cdkDrag class="block-item-row flex align-items-center gap-3 p-3 mb-2 surface-card border-1 surface-border border-round hover:border-primary transition-colors transition-duration-200">
+
+                <div cdkDragHandle class="cursor-move p-2 hover:surface-100 border-round">
+                  <i class="pi pi-bars text-400 hover:text-primary transition-colors"></i>
+                </div>
+
+                <div class="flex flex-column flex-grow-1 cursor-pointer" (click)="scrollToIndex(block._id)">
+                  <span class="font-bold text-900">{{ block.title || 'Bloc sans titre' }}</span>
+                  <div class="flex align-items-center gap-2 mt-1">
+                    <span class="text-xs font-mono px-2 py-1 surface-100 border-round text-500 uppercase">{{ block.type }}</span>
+                  </div>
+                </div>
+
+                <div class="flex gap-1">
+                  <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger"
+                            pTooltip="Supprimer" tooltipPosition="bottom"
+                            (onClick)="$event.stopPropagation(); deleteBlock($index)">
+                  </p-button>
+                </div>
+
+              </div>
+            }
+
+          </div>
+        </div>
+      }
+    </div>
+  </p-drawer>
+  <app-add-block-modal [(visible)]="isAddModalVisible" (blockAdded)="onBlockAdded($event)" [closeOnAdd]="false"></app-add-block-modal>
+  <p-toast position="bottom-right"></p-toast>
+}
+@else {
+  <div class="flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <p-progressSpinner ariaLabel="loading" />
+  </div>
+}
+

@@ -1,0 +1,26 @@
+<div class="p-3">
+  <h4 class="mt-0 mb-2 p-1 border-round hover:surface-100 outline-none focus:surface-200"
+      [(appContentEditable)]="block().title">
+    {{ block().title }}
+  </h4>
+  <div class="surface-100 border-round overflow-hidden flex justify-content-center">
+    @if (block().imageUrl) {
+      <img [src]="block().imageUrl" class="image-block"  alt="Image title"/>
+    } @else {
+      <i class="pi pi-image text-4xl text-300 self-center"></i>
+    }
+  </div>
+</div>
+
+<ng-template #editor>
+  <div class="flex flex-column gap-4 p-fluid">
+    <div class="field">
+      <label class="font-bold block mb-2">Titre du bloc</label>
+      <input pInputText class="w-full" [(ngModel)]="block().title" />
+    </div>
+    <div class="field">
+      <label class="font-bold block mb-2">URL de l'image</label>
+      <input pInputText class="w-full" [(ngModel)]="block().imageUrl" />
+    </div>
+  </div>
+</ng-template>

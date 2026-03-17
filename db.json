@@ -95,5 +95,97 @@
     "totalElements": 5,
     "totalPages": 1,
     "number": 0
-  }
+  },
+  "mobile-page": [
+    {
+      "id": "69b7c4cd85f76f961000b303",
+      "state": "ONLINE",
+      "name": "Home page",
+      "updatedDate": 1773651471939,
+      "publishedDate": 1773651471939,
+      "blocks": [
+        {
+          "type": "content-list",
+          "title": "Block Content List 1",
+          "description": "Description 1",
+          "subTitle": "Sous titre",
+          "contents": [
+            {
+              "title": "Titre Content 1",
+              "description": "Description Content 1",
+              "imageId": "Image Id 1"
+            },
+            {
+              "title": "Titre Content 2",
+              "description": "Description Content 2",
+              "imageId": "Image Id 2"
+            },
+            {
+              "title": "Titre Content 3",
+              "description": "Description Content 3",
+              "imageId": "Image Id 3"
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "title": "Block Event 1",
+          "description": "Description 2",
+          "subTitle": "subtitle",
+          "content": {
+            "title": "Titre Content 1",
+            "description": "Description Content 1",
+            "imageId": "Image Id 1"
+          }
+        },
+        {
+          "type": "image",
+          "title": "Block Image 1",
+          "description": "Description 3",
+          "imageId": "Image Id",
+          "imageUrl": "https://media.istockphoto.com/id/1452473204/fr/vectoriel/bonne-famille-cuisinant-le-d%C3%AEner-ensemble-dans-la-cuisine-illustration-vectorielle-de.jpg?s=1024x1024&w=is&k=20&c=dQCB1lwCG1-mHiAZBpBF-bQG5zKcxaC4Lr9C8jRz-ag="
+        },
+        {
+          "type": "text",
+          "title": "Block Text 1",
+          "description": "Description 4",
+          "text": "Un texte long"
+        },
+        {
+          "type": "content-list",
+          "title": "Block Content List 2",
+          "description": "Description 5"
+        }
+      ]
+    },
+    {
+      "id": "69b7c4ed85f76f961000b304",
+      "state": "ONLINE",
+      "name": "Actu Page",
+      "updatedDate": 1773651462155,
+      "publishedDate": 1773651462155,
+      "blocks": []
+    },
+    {
+      "id": "69b7c4ed85f76f961000b305",
+      "state": "OFFLINE",
+      "name": "toto page",
+      "updatedDate": 1773651456370,
+      "publishedDate": 1773651456370
+    },
+    {
+      "id": "69b7c4ed85f76f961000b306",
+      "state": "DELETED",
+      "name": "titi",
+      "updatedDate": 1773651413718,
+      "publishedDate": 1773651413718
+    },
+    {
+      "id": "dimcpg282",
+      "name": "test",
+      "publishedDate": 1774047600000,
+      "state": "OFFLINE",
+      "blocks": []
+    }
+  ]
 }

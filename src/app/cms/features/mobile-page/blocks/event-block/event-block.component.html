@@ -1,0 +1,37 @@
+<div class="p-4 surface-card border-round shadow-1">
+  <h4 class="mt-0 mb-2 p-1 border-round hover:surface-100 outline-none focus:surface-200"
+      contenteditable="true"
+      [(appContentEditable)]="block().title">
+    {{ block().title }}
+  </h4>
+  <span class="text-primary font-bold text-sm uppercase mb-2 block"
+        contenteditable="true" [(appContentEditable)]="block().subTitle">
+    </span>
+
+  <h3 class="mt-0 mb-3 text-2xl"
+      contenteditable="true" [(appContentEditable)]="block().content!.title">
+  </h3>
+
+  <p class="text-700 line-height-3 m-0"
+     contenteditable="true" [(appContentEditable)]="block().content!.description">
+  </p>
+</div>
+
+<ng-template #editor>
+  <div class="flex flex-column gap-4 p-fluid">
+    <div class="field">
+      <label class="font-bold block mb-2">Titre du bloc</label>
+      <input pInputText class="w-full" [(ngModel)]="block().title"/>
+    </div>
+    <div class="field">
+      <label class="font-bold block mb-2">Sous-titre de l'événement</label>
+      <input pInputText class="w-full" [(ngModel)]="block().subTitle"/>
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label class="font-bold block">Contenu principal</label>
+      <app-content-editor [(content)]="block().content!"></app-content-editor>
+    </div>
+
+  </div>
+</ng-template>
