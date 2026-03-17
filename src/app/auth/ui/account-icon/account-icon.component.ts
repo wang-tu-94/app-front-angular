@@ -22,6 +22,7 @@ export class AccountIconComponent {
 
   showLogin() {
     this.dialogService.open(LoginComponent, {
+      closable: true,
       header: 'Connexion',
       width: '350px'
     });
