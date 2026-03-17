@@ -27,7 +27,8 @@ export class BlockFactory {
           type: 'event',
           title: 'Nouvel événement',
           content: {
-            _id: uuidv4()
+            _id: uuidv4(),
+            title: 'Élément 1'
           }
         } as EventBlock;
 
