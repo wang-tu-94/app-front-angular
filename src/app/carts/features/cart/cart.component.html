@@ -1,9 +1,9 @@
 <h1 class="text-center">Liste du panier</h1>
 
 <p-dataView #dv [value]="cart().items">
-    <ng-template pTemplate="list" let-cartItems>
+    <ng-template #list let-items>
         <div class="grid grid-nogutter">
-            @for (cartItem of cartItems; track cartItem; let first = $first) {
+            @for (cartItem of items; track cartItem; let first = $first) {
                 <div class="col-12 relative">
                     <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3"
                          [ngClass]="{ 'border-top-1 surface-border': !first }">
