@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    container_name: product-frontend
+    container_name: app-front-angular
     ports:
       - "4200:4200"
     volumes:
