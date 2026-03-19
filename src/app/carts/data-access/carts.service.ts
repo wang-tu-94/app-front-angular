@@ -8,7 +8,7 @@ import {Observable, tap} from "rxjs";
 @Injectable({providedIn: 'root'})
 export class CartsService {
   private readonly http = inject(HttpClient);
-  private readonly path = "/api/product-backend/v1/carts";
+  private readonly path = "/api/ms-products/v1/carts";
   private readonly API_URL = environment.apiUrl;
 
   private readonly _cart = signal<Cart>({items: []});
