@@ -1,0 +1,143 @@
+<div class="card overflow-y-auto pb-6" style="max-height: 100%;">
+  <app-job-header
+    [title]="'Détails du Job : ' + jobName()"
+    [breadcrumbItems]="breadcrumb()"
+    [showNewJobButton]="false">
+
+    <div class="flex flex-wrap align-items-center gap-3">
+      @if (job()) {
+        @if (job()!.status === 'NORMAL') {
+          <p-button label="Pause" icon="pi pi-pause" severity="warn" [outlined]="true" (onClick)="pauseJob()"/>
+        }
+        @if (job()!.status === 'PAUSED') {
+          <p-button label="Reprendre" icon="pi pi-play" severity="success" [outlined]="true" (onClick)="resumeJob()"/>
+        }
+        <p-button label="Supprimer" icon="pi pi-trash" severity="danger" (onClick)="deleteJob()"/>
+      }
+    </div>
+  </app-job-header>
+
+  @if (store.isLoading() && !job()) {
+    <div class="flex justify-content-center align-items-center" style="min-height: 300px;">
+      <i class="pi pi-spin pi-spinner text-blue-500" style="font-size: 3rem"></i>
+    </div>
+  } @else if (job()) {
+    <p-card class="shadow-2 border-round-xl">
+      <div class="grid formgrid p-fluid">
+
+        <div class="col-12 md:col-6 mb-4">
+          <span class="block text-sm uppercase text-500 font-bold tracking-wide mb-2">Nom du Job</span>
+          <div class="text-900 text-xl font-semibold flex align-items-center">
+            <i class="pi pi-cog mr-2 text-blue-500"></i>
+            {{ job()!.name }}
+          </div>
+        </div>
+
+        <div class="col-12 md:col-6 mb-4">
+          <span class="block text-sm uppercase text-500 font-bold tracking-wide mb-2">Groupe</span>
+          <div class="text-900 text-xl flex align-items-center">
+            <i class="pi pi-folder-open mr-2 text-orange-400"></i>
+            {{ job()!.group }}
+          </div>
+        </div>
+
+        <div class="col-12 md:col-6 mb-4">
+          <span class="block text-sm uppercase text-500 font-bold tracking-wide mb-2">Statut Actuel</span>
+          <p-tag [value]="job()!.status" [severity]="getSeverity(job()!.status)" styleClass="text-base px-3 py-2"/>
+        </div>
+
+        <div class="col-12 md:col-6 mb-4">
+          <span class="block text-sm uppercase text-500 font-bold tracking-wide mb-2">Prochaine Exécution</span>
+          <div class="text-900 text-lg">
+            @if (job()!.nextFireTime) {
+              <span class="surface-100 border-round px-3 py-2 inline-flex align-items-center border-1 surface-border">
+                    <i class="pi pi-calendar-clock mr-2 text-green-500 text-xl"></i>
+                {{ job()!.nextFireTime | date:'dd/MM/yyyy à HH:mm:ss' }}
+                  </span>
+            } @else {
+              <span class="text-500 font-italic">
+                    <i class="pi pi-calendar-times mr-2"></i>Non planifié
+                  </span>
+            }
+          </div>
+        </div>
+
+        <div class="col-12 md:col-6 mb-4">
+          <span class="block text-sm uppercase text-500 font-bold tracking-wide mb-2">Expression CRON</span>
+
+          <div class="flex align-items-center w-full" style="height: 3rem; max-width: 450px;">
+
+            @if (!isEditingCron()) {
+              <div class="flex-1 flex align-items-center bg-gray-900 text-green-400 px-3 border-round border-1 border-gray-700 h-full font-mono text-lg shadow-1 w-full">
+                <i class="pi pi-clock mr-2 text-gray-400"></i>
+                <span class="mt-1">{{ job()!.cronExpression }}</span>
+              </div>
+
+              <p-button
+                icon="pi pi-pencil"
+                [rounded]="true"
+                [text]="true"
+                severity="secondary"
+                class="ml-2"
+                pTooltip="Modifier"
+                (onClick)="startEditCron()" />
+            }
+
+            @else {
+              <p-inputgroup class="w-full shadow-1" style="height: 3rem;">
+
+                <p-inputgroup-addon>
+                  <i class="pi pi-clock"></i>
+                </p-inputgroup-addon>
+
+                <input
+                  pInputText
+                  [ngModel]="newCronValue()"
+                  (ngModelChange)="newCronValue.set($event)"
+                  class="font-mono text-lg h-full"
+                  placeholder="Ex: 0 0/15 * * * ?" />
+
+                <p-button
+                  icon="pi pi-check"
+                  severity="success"
+                  [disabled]="!newCronValue() || newCronValue() === job()!.cronExpression"
+                  pTooltip="Valider"
+                  (onClick)="confirmCronUpdate()"
+                  class="h-full"
+                  styleClass="h-full border-noround">
+                </p-button>
+
+                <p-button
+                  icon="pi pi-times"
+                  severity="danger"
+                  pTooltip="Annuler"
+                  (onClick)="cancelEditCron()"
+                  class="h-full"
+                  styleClass="h-full border-noround-left">
+                </p-button>
+
+              </p-inputgroup>      }
+
+          </div>
+        </div>
+        <div class="col-12 mb-2">
+          <span class="block text-sm uppercase text-500 font-bold tracking-wide mb-2">Description</span>
+          <div
+            class="text-700 surface-50 p-3 border-round border-1 surface-border border-left-3 border-left-blue-500 line-height-3">
+            {{ job()!.description || 'Aucune description fournie pour ce job.' }}
+          </div>
+        </div>
+
+      </div>
+    </p-card>
+    <app-job-logs-browser [jobName]="jobName()"></app-job-logs-browser>
+  } @else {
+    <div
+      class="flex flex-column justify-content-center align-items-center p-6 border-round surface-50 border-1 surface-border border-dashed">
+      <i class="pi pi-exclamation-circle text-500 mb-3" style="font-size: 3rem"></i>
+      <span class="text-xl text-600 font-medium">Ce job n'existe pas ou a été supprimé.</span>
+    </div>
+  }
+
+  <p-confirmDialog [style]="{width: '450px'}" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+</div>

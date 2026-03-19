@@ -1,0 +1,14 @@
+<div class="card overflow-y-auto pb-6">
+  <app-job-header
+    [title]="'Groupe : ' + jobGroup()"
+    [breadcrumbItems]="breadcrumb()">
+  </app-job-header>
+
+
+  <app-job-group-table
+    [groupName]="jobGroup()"
+    [jobs]="jobs()">
+  </app-job-group-table>
+
+  <p-confirmDialog [style]="{width: '450px'}" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+</div>

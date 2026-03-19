@@ -36,6 +36,11 @@ export class PanelMenuComponent {
       routerLink: ['/cms']
     },
     {
+      label: 'jobs',
+      icon: 'pi pi-wrench',
+      routerLink: ['/jobs']
+    },
+    {
       label: 'Compte',
       icon: 'pi pi-user-plus',
       routerLink: ['/auth']

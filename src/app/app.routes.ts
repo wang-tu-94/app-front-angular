@@ -32,6 +32,11 @@ export const APP_ROUTES: Routes = [
     loadChildren: () =>
       import("./cms/cms.routes").then((m) => m.CMS_ROUTES)
   },
+  {
+    path: "jobs",
+    loadChildren: () =>
+      import("./jobs/jobs.routes").then((m) => m.JOBS_ROUTES)
+  },
 
   { path: "", redirectTo: "home", pathMatch: "full" },
 ];

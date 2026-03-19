@@ -1,0 +1,69 @@
+<p-card class="shadow-2 border-round-xl mt-4">
+
+  <ng-template #title>
+    <div class="flex justify-content-between align-items-center">
+      <span class="text-xl"><i class="pi pi-history mr-2 text-blue-500"></i>Historique des exécutions</span>
+
+      <p-button
+        label="Purger l'historique"
+        icon="pi pi-trash"
+        severity="danger"
+        [outlined]="true"
+        size="small"
+        [disabled]="totalRecords() === 0 || isLoadingLogs()"
+        (onClick)="confirmClearLogs()" />
+    </div>
+  </ng-template>
+
+  <p-table
+    [value]="logs()"
+    [lazy]="true"
+    (onLazyLoad)="loadLogs($event)"
+    [paginator]="true"
+    [rows]="10"
+    [totalRecords]="totalRecords()"
+    [loading]="isLoadingLogs()"
+    [rowHover]="true"
+    class="p-datatable-sm p-datatable-striped">
+
+    <ng-template #header>
+      <tr>
+        <th style="width: 150px">Statut</th>
+        <th style="width: 200px">Date</th>
+        <th style="width: 150px">Étape</th>
+        <th>Message</th>
+        <th style="width: 100px" class="text-center">Action</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-log>
+      <tr>
+        <td>
+          <p-tag [value]="log.status" [severity]="getLogSeverity(log.status)" />
+        </td>
+        <td>
+          <i class="pi pi-calendar mr-2 text-gray-500"></i>
+          {{ log.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}
+        </td>
+        <td>
+          <span class="font-semibold text-blue-600">{{ log.stepName }}</span>
+        </td>
+        <td class="text-truncate" style="max-width: 300px;" [pTooltip]="log.message" tooltipPosition="top">
+          {{ log.message || '-' }}
+        </td>
+        <td class="text-center">
+          <p-button icon="pi pi-search" [rounded]="true" [text]="true" severity="info" pTooltip="Détails" />
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="5" class="text-center p-4 text-500">
+          Aucun historique disponible pour ce job.
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+</p-card>

@@ -1,0 +1,25 @@
+<div class="flex flex-column gap-3 mb-4">
+  <p-breadcrumb
+    class="max-w-full"
+    [model]="breadcrumbItems()"
+    [home]="homeIcon">
+  </p-breadcrumb>
+
+  <p-toolbar>
+    <ng-template #start>
+      <h2 class="m-0 text-2xl font-bold">{{ title() }}</h2>
+    </ng-template>
+
+    <ng-template #end>
+      @if (showNewJobButton()) {
+        <p-button
+          label="Nouveau Job"
+          icon="pi pi-plus"
+          severity="success"
+          (onClick)="openCreateModal()" />
+      }
+      <ng-content></ng-content>
+    </ng-template>
+  </p-toolbar>
+
+</div>

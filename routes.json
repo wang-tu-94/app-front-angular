@@ -1,5 +1,8 @@
 {
   "/api/ms-cms/v1/mobile/page/:id": "/mobile-page/:id",
+  "/api/ms-jobs/v1/jobs": "/mapJobs",
+  "/api/ms-jobs/v1/jobs/types": "/jobTypes",
+  "/api/ms-jobs/v1/logs/:jobName": "/mockedLogs",
   "/api/product-backend/v1/products*": "/products$1",
   "/api/ms-cms/v1/mobile/page*": "/page$1"
 }

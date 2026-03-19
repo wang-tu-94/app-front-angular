@@ -356,5 +356,71 @@
       "state": "OFFLINE",
       "blocks": []
     }
-  ]
+  ],
+  "mapJobs": {
+    "MAINTENANCE": [
+      {
+        "name": "CleanupLogs",
+        "group": "MAINTENANCE",
+        "description": "Nettoie les vieux logs",
+        "cronExpression": "0 0 2 * * ?",
+        "status": "NORMAL",
+        "nextFireTime": 1773844313139
+      },
+      {
+        "name": "DbBackup",
+        "group": "MAINTENANCE",
+        "description": "Sauvegarde la base",
+        "cronExpression": "0 0 4 * * ?",
+        "status": "PAUSED",
+        "nextFireTime": null
+      }
+    ],
+    "REPORTING": [
+      {
+        "name": "WeeklyReport",
+        "group": "REPORTING",
+        "description": "Génère le PDF hebdo",
+        "cronExpression": "0 0 8 ? * MON",
+        "status": "EXECUTING",
+        "nextFireTime": 1773999999999
+      }
+    ]
+  },
+  "jobTypes": [
+    { "id": "SHELL", "description": "Script Shell" },
+    { "id": "JAVA", "description": "Classe Java" }
+  ],
+  "mockedLogs": {
+    "content": [
+      {
+        "id": 101,
+        "jobName": "CleanupLogs",
+        "timestamp": 1773844310000,
+        "stepName": "INIT",
+        "status": "SUCCESS",
+        "message": "Initialisation du job de nettoyage."
+      },
+      {
+        "id": 102,
+        "jobName": "CleanupLogs",
+        "timestamp": 1773844312000,
+        "stepName": "EXECUTION",
+        "status": "RUNNING",
+        "message": "Suppression des anciens fichiers en cours..."
+      },
+      {
+        "id": 103,
+        "jobName": "CleanupLogs",
+        "timestamp": 1773844315000,
+        "stepName": "FINISH",
+        "status": "ERROR",
+        "message": "Erreur de permission sur le dossier /var/logs."
+      }
+    ],
+    "totalElements": 3,
+    "totalPages": 1,
+    "size": 10,
+    "number": 0
+  }
 }

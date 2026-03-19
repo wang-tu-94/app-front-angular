@@ -8,7 +8,7 @@ import {
 import localeFr from "@angular/common/locales/fr";
 import { BrowserModule, bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
-import { provideRouter } from "@angular/router";
+import {provideRouter, withComponentInputBinding} from "@angular/router";
 import { APP_ROUTES } from "app/app.routes";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
@@ -39,7 +39,7 @@ bootstrapApplication(AppComponent, {
       }
     }),
     provideAnimations(),
-    provideRouter(APP_ROUTES),
+    provideRouter(APP_ROUTES, withComponentInputBinding()),
     ConfirmationService,
     MessageService,
     DialogService,

@@ -1,0 +1,60 @@
+<p-panel [toggleable]="true" class="mb-4">
+  <ng-template pTemplate="header">
+    <div class="flex align-items-center gap-2">
+      <i class="pi pi-folder-open text-blue-500 text-xl"></i>
+      <span class="font-bold text-xl cursor-pointer hover:text-blue-600 transition-colors"
+            (click)="goToGroup($event, groupName())"
+            pTooltip="Ouvrir la vue détaillée du groupe">
+            {{ groupName() }}
+          </span>
+      <p-tag [value]="jobs().length.toString()" severity="info" [rounded]="true" />
+    </div>
+  </ng-template>
+
+  <p-table [value]="jobs()" [rowHover]="true" class="p-datatable-sm">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nom du Job</th>
+        <th style="width: 150px">Statut</th>
+        <th style="width: 200px">Prochaine Exécution</th>
+        <th style="width: 200px" class="text-center">Actions</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-job>
+      <tr>
+        <td class="font-semibold"><i class="pi pi-cog mr-2 text-gray-600"></i>{{ job.name }}</td>
+        <td><p-tag [value]="job.status" [severity]="getSeverity(job.status)" /></td>
+        <td>
+          @if (job.nextFireTime) {
+            {{ job.nextFireTime | date:'dd/MM/yyyy HH:mm:ss' }}
+          } @else {
+            <span class="text-gray-400">Non planifié</span>
+          }
+        </td>
+        <td class="text-center">
+          <div class="flex justify-content-center gap-2">
+            <p-button icon="pi pi-eye" [rounded]="true" [text]="true" severity="info"
+                      (onClick)="goToDetail(job.group, job.name)" pTooltip="Détails" />
+
+            @if (job.status === 'NORMAL') {
+              <p-button icon="pi pi-pause" [rounded]="true" [text]="true" severity="warn"
+                        (onClick)="pauseJob(job.group, job.name)" pTooltip="Pause" />
+            }
+            @if (job.status === 'PAUSED') {
+              <p-button icon="pi pi-play" [rounded]="true" [text]="true" severity="success"
+                        (onClick)="resumeJob(job.group, job.name)" pTooltip="Reprendre" />
+            }
+
+            <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger"
+                      (onClick)="deleteJob(job.group, job.name)" pTooltip="Supprimer" />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr><td colspan="4" class="text-center p-4">Aucun job dans ce groupe.</td></tr>
+    </ng-template>
+  </p-table>
+</p-panel>

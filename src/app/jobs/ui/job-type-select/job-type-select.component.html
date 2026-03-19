@@ -1,0 +1,12 @@
+<p-select
+  [options]="store.types()"
+  optionLabel="name"
+  optionValue="id"
+  [ngModel]="value()"
+  (ngModelChange)="onValueChange($event)"
+  (onBlur)="onTouched()"
+  [disabled]="isDisabled()"
+  [loading]="store.isLoading()"
+  placeholder="Sélectionnez un type de job..."
+  class="w-full"
+/>

@@ -1,0 +1,27 @@
+<form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="flex flex-column gap-3 mt-2">
+
+  <div class="flex flex-column gap-2">
+    <label for="group" class="font-bold">Groupe</label>
+    <input pInputText id="group" formControlName="group" placeholder="Ex: MAINTENANCE" />
+  </div>
+
+  <div class="flex flex-column gap-2">
+    <label for="name" class="font-bold">Nom du Job</label>
+    <input pInputText id="name" formControlName="name" placeholder="Ex: CleanupLogs" />
+  </div>
+
+  <div class="flex flex-column gap-2">
+    <label class="font-bold">Type de Job</label>
+    <app-job-type-select formControlName="jobType" />
+  </div>
+
+  <div class="flex flex-column gap-2">
+    <label for="cron" class="font-bold">Expression CRON</label>
+    <input pInputText id="cron" formControlName="cron" placeholder="0 0/15 * * * ?" />
+  </div>
+
+  <div class="flex justify-content-end gap-2 mt-4">
+    <p-button label="Annuler" severity="secondary" [text]="true" (onClick)="close()" />
+    <p-button label="Planifier" type="submit" [disabled]="jobForm.invalid || isSaving()" [loading]="isSaving()" />
+  </div>
+</form>

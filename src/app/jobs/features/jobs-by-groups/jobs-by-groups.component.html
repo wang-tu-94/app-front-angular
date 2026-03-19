@@ -1,0 +1,18 @@
+<div class="card">
+  <app-job-header
+    title="Planificateur de Jobs"
+    [breadcrumbItems]="breadcrumb">
+  </app-job-header>
+
+  @for (group of store.jobsByGroupMap() | keyvalue; track group.key) {
+    <app-job-group-table
+      [groupName]="group.key"
+      [jobs]="group.value">
+    </app-job-group-table>
+  }
+
+  <p-confirmDialog
+    [style]="{width: '450px'}"
+    rejectButtonStyleClass="p-button-text p-button-secondary">
+  </p-confirmDialog>
+</div>
