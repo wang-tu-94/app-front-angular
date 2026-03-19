@@ -1,4 +1,4 @@
-name: Deploy product-frontend
+name: Deploy app-front-angular
 
 on:
   push:
@@ -24,4 +24,4 @@ jobs:
           # Si ton front est dans un sous-dossier, mets : context: ./nom-dossier
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/product-frontend:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/app-front-angular:latest
