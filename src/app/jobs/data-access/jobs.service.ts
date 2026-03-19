@@ -27,6 +27,6 @@ export class JobsService {
   }
 
   getAvailableJobTypes() {
-    return this.http.get<JobType[]>(`${this.API_URL}${this.path}/jobs/types`);
+    return this.http.get<JobType[]>(`${this.API_URL}${this.path}/types`);
   }
 }
